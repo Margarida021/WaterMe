@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :divisions, dependent: :destroy
   has_many :plant_divisions, through: :divisions
+
+  validates :name, presence: true
 end
