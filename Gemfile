@@ -79,3 +79,6 @@ end
 
 # devise gem
 gem "devise"
+
+#cloudinary setup
+gem "cloudinary"
