@@ -1,0 +1,11 @@
+<div>
+  <%= simple_form_for [@plant_division, @divisions] do |f| %>
+    <div class="form-inputs">
+      <%= f.input :division, collection: @divisions %>
+    </div>
+
+    <div class="">
+      <%= f.button :submit, "Save Plant"%>
+    </div>
+  <% end %>
+</div>
