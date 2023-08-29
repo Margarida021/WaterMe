@@ -11,3 +11,9 @@
 @import "components/index";
 @import "pages/index";
 @import "userdevise/index";
+
+body {
+  background-color: $light-green;
+  max-width: 390px;
+  max-height: 844px;
+}

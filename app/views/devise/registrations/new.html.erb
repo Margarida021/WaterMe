@@ -1,3 +1,4 @@
+<%= image_tag("leaves.svg", class:"image-leaves") %>
 <div class="sign-up-container">
   <h2>Sign up</h2>
   <p>Fill in all the necessary information</p>
@@ -11,7 +12,9 @@
                   placeholder: "Your Name",
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "name" }%>
+                  input_html: { autocomplete: "name" },
+                  class:"input-test" %>
+
       <%= f.input :email,
                   placeholder: "user@gmail.com",
                   required: true,
@@ -33,7 +36,7 @@
       <%= f.button :submit, "Sign up", class:"sign-up" %>
     </div>
   <% end %>
-  <div class="d-flex sign-up-details">
+  <div class="d-flex sign-up-text">
     <p>Already have an account?</p>
     <%= render "devise/shared/links" %>
   </div>
