@@ -1,5 +1,5 @@
 <%= image_tag("leaves.svg", class:"image-leaves") %>
-<div class="sign-up-container">
+<div class="sign-up-in-container">
   <h2>Sign up</h2>
   <p>Fill in all the necessary information</p>
 
@@ -12,31 +12,29 @@
                   placeholder: "Your Name",
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "name" },
-                  class:"input-test" %>
-
+                  input_html: { autocomplete: "name", class:"input-box" }%>
       <%= f.input :email,
                   placeholder: "user@gmail.com",
                   required: true,
                   autofocus: true,
-                  input_html: { autocomplete: "email" }%>
+                  input_html: { autocomplete: "email", class:"input-box" }%>
       <%= f.input :password,
                   placeholder: "******",
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class:"input-box" } %>
       <%= f.input :password_confirmation,
                   placeholder: "******",
                   required: true,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class:"input-box" } %>
     </div>
 
 
     <div class="form-actions btn-large">
-      <%= f.button :submit, "Sign up", class:"sign-up" %>
+      <%= f.button :submit, "Sign up", class:"btn-sign-up-in" %>
     </div>
   <% end %>
-  <div class="d-flex sign-up-text">
+  <div class="d-flex sign-up-in-text">
     <p>Already have an account?</p>
     <%= render "devise/shared/links" %>
   </div>
