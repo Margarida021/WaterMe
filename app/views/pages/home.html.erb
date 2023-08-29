@@ -3,13 +3,13 @@
 <%= image_tag "image-landing.svg", alt: "background", width: 390 %>
 <div class="position-absolute fixed-top d-flex row aligm-items-center justify-content-center m-5">
   <%= image_tag "logotype.svg", alt: "waterme logo", class:"logotype" %>
-  <p class="txt-description my-3">
+  <p class="txt-description mb-5">
     Transform your gardening journey with practical
     plant care advice and tips to help your plants thrive.
   </p>
   <%= image_tag "image-plant-landing.svg", alt: "image landing", class:"img-landing"%>
-  <div class="d-flex row">
-    <%= link_to "Start Your Journey", new_user_registration_path %>
-    <%= link_to "Sign in", new_user_session_path %>
+  <div class="d-flex gap-3 row mt-5 justify-content-center">
+    <%= link_to "Start Your Journey", new_user_registration_path, class:"btn-start" %>
+    <%= link_to "Sign in", new_user_session_path, class:"btn-sign-in" %>
   </div>
 </div>
