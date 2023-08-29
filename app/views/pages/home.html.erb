@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# <h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p> %>
+<%= image_tag "image-landing.svg", alt: "background", width: 390 %>
+<div class="position-absolute fixed-top d-flex row aligm-items-center justify-content-center m-5">
+  <%= image_tag "logotype.svg", alt: "waterme logo", class:"mt-5" %>
+  <p class="txt-description my-5">
+    Transform your gardening journey with practical
+    plant care advice and tips to help your plants thrive.
+  </p>
+  <%= image_tag "image-plant-landing.svg", alt: "image landing"%>
+  <div class="d-flex row">
+    <%= link_to "Start Your Journey", new_user_registration_path %>
+    <%= link_to "Sign in", new_user_session_path %>
+  </div>
+</div>
