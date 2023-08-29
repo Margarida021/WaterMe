@@ -1,0 +1,16 @@
+.btn-large {
+  background-color: $darker-green;
+  height: 50px;
+  width: 350px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+
+  .btn-sign-up-in {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: $headers-font;
+    color: $lighter-green;
+  }
+}
