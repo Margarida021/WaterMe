@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    user_path(home_path) # after login goes to homepage
+    home_path(current_user) # after login goes to homepage
   end
 
 end
