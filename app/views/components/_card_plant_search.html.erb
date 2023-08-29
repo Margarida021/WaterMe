@@ -3,7 +3,7 @@
   <div class="card-plant-search">
 
     <%= link_to plant_path(plant.id) do%>
-      <div class="card-search-plant-photo" style="background-image: url(<%= image_tag plant.photo_url%>;">
+      <div class="card-search-plant-photo" style="background-image: url(<%= image_tag plant.photo_url%>);">
       <%# put image as background better %>
         <%= image_tag plant.photo_url, style: "width: 300px"%>
       </div>
