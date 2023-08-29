@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   resources :plants
+  resources :plant_divisions
 end
