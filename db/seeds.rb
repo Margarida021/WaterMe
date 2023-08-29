@@ -12,7 +12,7 @@ PlantDivision.destroy_all
 
 User.create(name: "Armindo", email: "admin@lewagon.pt", password: "123456")
 
-# POPULATING DB WITH PLANTS FROM TREFLE API
+# POPULATING DB WITH PLANTS FROM PERENUAL API
 
 url = "https://perenual.com/api/species-list?page=1&key=#{ENV["PERENUAL_API"]}"
 
@@ -25,7 +25,7 @@ first = plants_data.first
 plant = Plant.new(
   name: first["common_name"],
   scientific_name: first["scientific_name"][0],
-  description: 'nice plant :)',
+  description: 'nice plant',
   photo_url: first["default_image"]["original_url"],
   watering: first["watering"],
   light_level: first["sunlight"][0]
@@ -33,4 +33,25 @@ plant = Plant.new(
 
 plant.save!
 
-p plants_data.first
+# LOOK FOR DETAILS OF THE PLANT
+
+url_detail_plant = "https://perenual.com/api/species/details/#{first["id"]}?key=#{ENV["PERENUAL_API"]}"
+
+url_detail_plant_open = URI.open(url_detail_plant).read
+
+plant_data = JSON.parse(url_detail_plant_open)
+
+plant.update(description: plant_data["description"])
+
+# CARE GUIDE OF THE PLANT
+
+# url_care_guide_plant = plant_data["care-guides"]
+
+# url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+
+# plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
+
+# plant_care_guide.each do |guide|
+#   puts guide["type"]
+#   puts guide ["description"]
+# end

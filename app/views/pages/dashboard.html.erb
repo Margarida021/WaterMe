@@ -11,7 +11,7 @@
 
   <% @plants.each do |plant| %>
 
-    <%= image_tag plant.photo_url %>
+    <%= image_tag plant.photo_url, style: "width: 300px"%>
     <h2>Plant Name:</h2>
     <p><%= plant.name %></p>
     <h2>Plant description:</h2>
