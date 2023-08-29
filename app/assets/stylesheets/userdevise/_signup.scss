@@ -22,6 +22,11 @@
   z-index: 99;
 }
 
+.icon-back {
+  position: absolute;
+  margin-top: -35px;
+}
+
 .form-boxes {
   border-radius: 50px;
   font-size: 15px;
@@ -40,6 +45,8 @@
 }
 
 .sign-up-in-text {
+  display: flex;
+  justify-content: space-around;
   justify-content: center;
   margin-top: 10px;
   p {
