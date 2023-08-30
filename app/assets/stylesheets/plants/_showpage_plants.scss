@@ -6,7 +6,7 @@
     margin-top: 25px;
     color: $darker-green;
     font-weight: 700;
-    font-size: 36px;
+    // font-size: 36px;
   }
   p {
     text-align: center;
@@ -25,10 +25,11 @@
 
 .plant-image {
   display: block;
-  max-width: 390px;
+  min-width: 390px;
   max-height: 390px;
   width: 100%;
-  height: auto;
+  height: 75vh;
+  object-fit: cover;
 }
 
 .cards-explain-plant {
@@ -38,16 +39,15 @@
   background-color: #F5F5F5;
   position: relative;
   padding-top: 40px;
-  z-index: 100;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-  margin-top: -200px;
+  margin-top: -10vh;
   width: 390px;
-  height: 500px;
 }
 
 .show-page-plants-mini-cards {
   width: 390px;
+  align-items: center;
 }
 
 .plant-attributes-cards {
@@ -68,4 +68,30 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+.show-more {
+  text-align: center;
+  p{
+    color: $darker-green;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0 20px 0;
+  }
+}
+
+.plant-info {
+  h3 {
+    text-align: center;
+    margin-top: 25px;
+    color: $darker-green;
+    font-weight: 700;
+  }
+  p {
+    text-align: center;
+    color: $medium-dark-green;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0 20px 40px 20px;
+  }
 }
