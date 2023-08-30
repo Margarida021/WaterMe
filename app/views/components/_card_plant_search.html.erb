@@ -2,10 +2,10 @@
 
   <div class="card-plant-search">
 
-    <%= link_to plant_path(plant.id) do%>
-      <div class="card-search-plant-photo" style="background-image: url(<%= image_tag plant.photo_url%>);">
+    <%= link_to plant_path(plant.id) do %>
+      <div class="card-search-plant-photo">
       <%# put image as background better %>
-        <%= image_tag plant.photo_url, style: "width: 300px"%>
+        <%= image_tag plant.photo_url, style: "width: 300px" %>
       </div>
 
       <div class="card-search-plant-info">
@@ -15,7 +15,7 @@
     <% end %>
 
     <div class="btn-add-plant-card-search">
-      <%= link_to 'Add Plant!', new_plant_plant_division(plant.id) %>
+      <%= link_to 'Add Plant!', new_plant_plant_division_path(plant.id) %>
     </div>
 
   </div>

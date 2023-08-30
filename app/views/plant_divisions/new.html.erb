@@ -1,7 +1,7 @@
 <div>
-  <%= simple_form_for [@plant_division, @divisions] do |f| %>
+  <%= simple_form_for(@plant_division) do |f| %>
     <div class="form-inputs">
-      <%= f.input :division, collection: @divisions %>
+      <%= f.collection_select :division_id, @divisions, :id, :name %>
     </div>
 
     <div class="">
