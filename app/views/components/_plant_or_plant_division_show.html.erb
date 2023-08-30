@@ -1,12 +1,21 @@
-<div class="show-page-plant">
-
   <div class="plant-image">
-    <%= image_tag plant.photo_url, style: "width: 300px"%>
+    <%= image_tag plant.photo_url, class:"plant-image"%>
+  </div>
+
+<div class="show-page-plant-container">
+
+  <div class="add-plant">
+    <%= link_to 'Add Plant!', new_plant_plant_division_path(plant), class:"btn-add-plant-card-details" %>
   </div>
 
   <div class="cards-explain-plant">
 
-    <div>
+    <div class="plant-details">
+      <h2><%= plant.name %></h2>
+      <p><%= plant.description %></p>
+    </div>
+
+    <div class="plant-attributes">
 
       <p><%= plant.watering_freq %></p>
 
@@ -24,25 +33,15 @@
 
     </div>
 
+    <div class="plant-info">
+      <h2>Watering recommendation:</h2>
+      <p><%= plant.care_guide.watering %></p>
+      <h2>Light recommendation:</h2>
+      <p><%= plant.care_guide.sunlight %></p>
+      <h2>Pruning recommendation:</h2>
+      <p><%= plant.care_guide.pruning %></p>
+    </div>
   </div>
 
-  <div class="plant-info">
-
-    <h2>Plant Name:</h2>
-    <p><%= plant.name %></p>
-    <h2>Plant description:</h2>
-    <p><%= plant.description %></p>
-    <h2>Watering recommendation:</h2>
-    <p><%= plant.care_guide.watering %></p>
-    <h2>Light recommendation:</h2>
-    <p><%= plant.care_guide.sunlight %></p>
-    <h2>Pruning recommendation:</h2>
-    <p><%= plant.care_guide.pruning %></p>
-
-  </div>
-
-  <div class="btn-add-plant-card-search">
-    <%= link_to 'Add Plant!', new_plant_plant_division_path(plant) %>
-  </div>
 
 </div>
