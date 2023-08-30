@@ -1,39 +1,44 @@
-  <div class="plant-image">
-    <%= image_tag plant.photo_url, class:"plant-image"%>
-  </div>
+
+<div class="plant-image">
+  <%= image_tag plant.photo_url, class:"plant-image"%>
+</div>
+
+  <%= link_to image_tag("icons/arrow-circle-left.svg", class:"show-page-icon-back"), plants_path %>
+
 
 <div class="show-page-plant-container">
 
   <div class="add-plant">
-    <%= link_to 'Add Plant!', new_plant_plant_division_path(plant), class:"btn-add-plant-card-details" %>
+    <%= link_to 'Add Plant +', new_plant_plant_division_path(plant), class:"btn-add-plant-card-details" %>
   </div>
 
   <div class="cards-explain-plant">
 
     <div class="plant-details">
       <h2><%= plant.name %></h2>
+      <p><%= plant.scientific_name %></p>
       <p><%= plant.description %></p>
     </div>
 
-    <div class="plant-attributes">
+    <div class="show-page-plants-mini-cards">
 
-      <p><%= plant.watering_freq %></p>
+      <div class="plant-attributes-cards">
+        <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
+        <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
+        <i class="fa-solid fa-arrow-up-right-dots fa-2xl plant-attributes" style="color: #f1f2e1;"></i>
+      </div>
 
-    </div>
-
-    <div>
-
-      <p><%= plant.light_level %></p>
-
-    </div>
-
-    <div>
-
-      <p>Easy/Medium/Difficult to maintain?</p>
+      <div class="plant-attributes-cards">
+        <p><%= plant.watering_freq %></p>
+        <p><%= plant.light_level %></p>
+        <p>Easy</p>
+      </div>
 
     </div>
+    
+    <%= link_to "Show More", plants_path, class:"btn-something" %>
 
-    <div class="plant-info">
+    <div class="plant-info d-none">
       <h2>Watering recommendation:</h2>
       <p><%= plant.care_guide.watering %></p>
       <h2>Light recommendation:</h2>
@@ -41,6 +46,7 @@
       <h2>Pruning recommendation:</h2>
       <p><%= plant.care_guide.pruning %></p>
     </div>
+
   </div>
 
 

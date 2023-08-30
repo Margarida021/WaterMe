@@ -1,8 +1,9 @@
-.show-page-plant-container {
-  // padding: 40px 20px 20px 20px;
+.plant-details{
+  margin: 0 20px 0px 20px;
+
   h2 {
     text-align: center;
-    margin: 30px 0 20px 0px;
+    margin-top: 25px;
     color: $darker-green;
     font-weight: 700;
     font-size: 36px;
@@ -12,24 +13,59 @@
     color: $medium-dark-green;
     font-weight: 400;
     font-size: 20px;
-    margin: 0 20px 0 20px;
+    margin-bottom: 40px;
   }
 }
+
+.show-page-icon-back {
+  position: absolute;
+  margin-top: -480px;
+  margin-left: 20px;
+}
+
 .plant-image {
+  display: block;
   max-width: 390px;
-  object-fit: cover;
+  max-height: 390px;
+  width: 100%;
+  height: auto;
 }
 
 .cards-explain-plant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #F5F5F5;
   position: relative;
   padding-top: 40px;
   z-index: 100;
-  border-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   margin-top: -200px;
+  width: 390px;
+  height: 500px;
+}
+
+.show-page-plants-mini-cards {
   width: 390px;
 }
 
-.add-plant {
+.plant-attributes-cards {
+  display: flex;
+  justify-content: space-evenly;
+  p {
+    margin: 0;
+  }
+}
+
+.plant-attributes {
+  background-color: $medium-light-green;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
