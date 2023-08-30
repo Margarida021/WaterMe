@@ -1,11 +1,20 @@
-<div>
-  <%= simple_form_for(@plant_division) do |f| %>
-    <div class="form-inputs">
-      <%= f.collection_select :division_id, @divisions, :id, :name %>
-    </div>
+<%= simple_form_for @plant_division do |f| %>
 
-    <div class="">
-      <%= f.button :submit, "Save Plant"%>
-    </div>
-  <% end %>
-</div>
+  <%= f.association :division, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Division.all%>
+
+  <%= f.association :plant, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Plant.all%>
+
+
+<%= f.button :submit , class: "btn btn-primary"%>
+
+<% end %>

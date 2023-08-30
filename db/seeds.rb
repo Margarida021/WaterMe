@@ -59,7 +59,6 @@ all_plants.first(25).each do |plant|
 
 end
 
-
 # LOOK FOR AND UPDATE DESCRIPTION OF THE PLANT & CREATE CARE GUIDE
 
 plants = Plant.all
