@@ -6,6 +6,7 @@ class DivisionsController < ApplicationController
   end
 
   def show
+    @plant_division = PlantDivision.find(params[:id])
   end
 
 
