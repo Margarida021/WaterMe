@@ -1,0 +1,24 @@
+<h1><%= current_user.name %>'s Dashboard</h1>
+
+<%# Search a plant by a keyword in our DB or photo api %>
+
+<div class="form-search-results">
+
+  <div class="form-search-plants">
+    <%= form_with url: plants_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Type a keyword"
+      %>
+      <%# input a file here to search by photo %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
+  <div class="form-results-plants">
+    <%= render "components/card_plant_search", plants: @plants %>
+  </div>
+
+</div>
