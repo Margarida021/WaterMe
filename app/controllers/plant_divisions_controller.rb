@@ -3,39 +3,37 @@ class PlantDivisionsController < ApplicationController
   before_action :set_plant_division, only: [:show, :edit, :update, :destroy]
 
   def new
-    @plant = Plant.find(params[:plant_id])
-    @plant_division = @plant.plant_divisions.build
-    @divisions = Division.where(user_id: current_user.id)
-  end
-
-  def create
-    @plant_division = PlantDivision.new(plant_divisions_params)
-    # The below is necessary? Or simple forms shows only the divisions of the current user?
-    @plant = Plant.find(params[:plant_id])
-
-    @plant_division.plant_id = @plant
-    if @plant_division.save
-      redirect_to division_path(Division.find(params[:division_id]))
+    if params[:plant_id]
+      @plant = Plant.find(params[:plant_id])
     else
-      render :new, status: :unprocessable_entity
+      @division = Division.find(params[:division_id])
     end
-  end
-
-  def show
-  end
-
-  def new
     @plant_division = PlantDivision.new
   end
 
   def create
+
     @plant_division = PlantDivision.new(plant_division_params)
+
+    if params[:plant_id]
+      @plant = Plant.find(params[:plant_id])
+      @plant_division.plant = @plant
+    else
+      @division = Division.find(params[:division_id])
+      @plant_division.division = @division
+    end
+
     if @plant_division.save
       redirect_to division_path(@plant_division.division)
     else
       render :new, status: :unprocessable_entity
     end
+
   end
+
+  def show
+  end
+
 
   def edit
   end

@@ -1,1 +1,8 @@
 <h2><%= @division.name %></h2>
+<% @division.plants.each do |plant|%>
+
+  <p> <%= plant.name %> </p>
+
+<% end%>
+
+<%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
