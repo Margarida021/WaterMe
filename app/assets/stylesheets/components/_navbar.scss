@@ -13,7 +13,7 @@
 
 .navburguer {
   background-color: $darker-green;
-  height: 70px;
+  height: 90px;
 
   display: flex;
   flex-direction: row;
@@ -21,10 +21,33 @@
   justify-content: center;
   gap: 40px;
   bottom: 0;
+  transition: ease 0.4s;
 
   .active {
     background-color: $medium-green;
     padding: 8px;
     border-radius: 8px;
+    margin: 0 -8px;
+    transition: ease 0.4s;
+  }
+}
+
+.nav-add {
+  background-color: $medium-green;
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    border-bottom: 1px solid $lighter-green;
+    padding: 15px;
+  }
+
+  a {
+    color: $lighter-green;
+    margin-left: 5px;
+  }
+
+  .active {
+    display: block;
   }
 }
