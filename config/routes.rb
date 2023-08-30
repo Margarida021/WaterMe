@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: "pages#landing"
   get "home", to: "pages#home", as: :home
   resources :divisions
-  resources :plants
+  resources :plants 
   resources :plant_divisions
 end
