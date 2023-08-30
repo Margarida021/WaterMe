@@ -28,3 +28,25 @@
     border-radius: 8px;
   }
 }
+
+.nav-add {
+  background-color: $darker-green;
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid $lighter-green;
+  display: none;
+
+  > div {
+    border-bottom: 1px solid $lighter-green;
+    padding: 15px;
+  }
+
+  a {
+    color: $lighter-green;
+    margin-left: 5px;
+  }
+
+  .active {
+    display: block;
+  }
+}
