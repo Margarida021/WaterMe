@@ -51,7 +51,7 @@ end
 def photo_null?(plant_photo)
   photo = ""
 
-  if plant_photo == null
+  if plant_photo.nil?
     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
   else
     photo = plant_photo
