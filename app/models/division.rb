@@ -9,6 +9,6 @@ class Division < ApplicationRecord
                         'Full sun' => 'At least 8h of full sun'
                       }
   validates :category, inclusion: { in: CATEGORIES }
-  validates :light_direction, inclusion: { in: LIGHT_DIRECTIONS }
+  validates :light_direction, inclusion: { in: LIGHT_DIRECTIONS.keys }
   validates :name, :category, :user_id, :light_direction, presence: true
 end

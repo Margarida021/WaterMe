@@ -1,18 +1,23 @@
-<h2>Forgot your password?</h2>
+<%= image_tag("leaves.svg", class:"image-leaves") %>
+<div class="sign-up-in-container">
+  <%= link_to image_tag("arrow-circle-left.svg", class:"icon-back"), user_session_path %>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+  <h2>Forgot your password?</h2>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-  </div>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="form-inputs form-boxes">
+      <%= f.input :email,
+                  placeholder: "user@gmail.com",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", class:"input-box" } %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="form-actions btn-large">
+      <%= f.button :submit, "Reset Password", class:"btn-text" %>
+    </div>
+  <% end %>
+
+</div>

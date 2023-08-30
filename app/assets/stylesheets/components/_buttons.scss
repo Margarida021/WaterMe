@@ -1,0 +1,44 @@
+.btn-large {
+  background-color: $darker-green;
+  height: 50px;
+  width: 350px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+
+  .btn-text {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: $headers-font;
+    color: $lighter-green;
+  }
+}
+
+.btn-start {
+  background-color: $light-green;
+  color: $medium-dark-green;
+  height: 50px;
+  width: 350px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn-sign-in {
+  background-color: $medium-light-green;
+  color: $medium-dark-green;
+  height: 50px;
+  width: 175px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
