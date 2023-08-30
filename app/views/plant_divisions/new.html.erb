@@ -1,0 +1,20 @@
+<%= simple_form_for @plant_division do |f| %>
+
+  <%= f.association :division, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Division.all%>
+
+  <%= f.association :plant, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Plant.all%>
+
+
+<%= f.button :submit , class: "btn btn-primary"%>
+
+<% end %>

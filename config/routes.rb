@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :plant_divisions do
+    get 'steps/show'
+    get 'steps/update'
+  end
   root to: "pages#landing"
   devise_for :users
   resources :divisions
@@ -7,5 +11,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :plants
-  resources :plant_divisions
+  resources :plant_divisions do
+    resources :steps, controller: 'plant_divisions/steps'
+  end
 end
