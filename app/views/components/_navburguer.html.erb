@@ -1,15 +1,15 @@
 <div class="fixed-bottom" data-controller="add-nav">
   <div class="nav-add d-none active" data-add-nav-target="content">
-    <div class="d-flex col">
-      <%= link_to new_division_path do %>
+    <div>
+      <%= link_to new_division_path, class: "link-text" do %>
         <%= image_tag("icons/add.svg", alt: "waterme logo") %>
-        <a class="link-text">Add a new division</a>
+        <p>Add a new division</p>
       <% end %>
     </div>
-    <div class="d-flex">
-      <%= link_to new_plant_path do %>
+    <div>
+      <%= link_to new_plant_path, class: "link-text" do %>
         <%= image_tag("icons/add.svg", alt: "waterme logo") %>
-        <a class="link-text">Add a new plant</a>
+        <p>Add a new plant</p>
       <% end %>
     </div>
   </div>
