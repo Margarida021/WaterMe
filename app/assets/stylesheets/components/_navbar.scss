@@ -10,3 +10,21 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navburguer {
+  background-color: $darker-green;
+  height: 70px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  bottom: 0;
+
+  .active {
+    background-color: $medium-green;
+    padding: 8px;
+    border-radius: 8px;
+  }
+}
