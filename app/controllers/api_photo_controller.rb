@@ -1,4 +1,5 @@
 require 'uri'
+require 'open-uri'
 require 'json'
 require 'net/http'
 
@@ -19,7 +20,8 @@ class ApiPhotoController < ApplicationController
       name_sugs << plant["name"]
     end
 
-    
+
+
 
   end
 
@@ -50,7 +52,20 @@ class ApiPhotoController < ApplicationController
     response = https.request(request).read_body
   end
 
-  def request_perenual_api
+  def request_perenual_api(plant_names_sugs)
+
+    plant_objects = []
+
+    plant_names_sugs.each do |plant|
+      url = "https://perenual.com/api/species-list?key=#{ENV["PERENUAL_API"]}&q=#{plant}"
+
+      url_open = URI.open(url).read
+
+      search_result = JSON.parse(url_open)["data"]
+      
+
+    end
+
 
   end
 end
