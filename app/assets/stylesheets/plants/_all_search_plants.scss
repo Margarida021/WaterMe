@@ -28,6 +28,7 @@
   align-items: center;
   justify-content: center;
 
+  transition: all 0.3s;
 
 }
 
@@ -78,4 +79,9 @@
   a {
     padding: 10px;
   }
+}
+
+.card-selected-js {
+  transition: all 0.3s;
+  opacity: 0.75;
 }

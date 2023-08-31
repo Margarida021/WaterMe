@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["options"];
+  static targets = ["options", "background"];
   static currentActiveCard = null;
 
   toggle() {
@@ -10,11 +10,13 @@ export default class extends Controller {
     }
 
     this.optionsTarget.classList.toggle("d-none");
+    this.backgroundTarget.classList.toggle("card-selected-js")
     Controller.currentActiveCard = this;
   }
 
   hideLinks() {
-    this.optionsTarget.classList.add("d-none");
+    this.optionsTarget.classList.add("d-none")
+    this.backgroundTarget.classList.remove("card-selected-js");
   }
 
   disconnect() {
