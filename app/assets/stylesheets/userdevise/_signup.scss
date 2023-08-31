@@ -46,13 +46,18 @@
 
 .sign-up-in-text {
   display: flex;
-  justify-content: space-around;
   justify-content: center;
   margin-top: 10px;
+  gap: 10px;
   p {
-    margin-right: 10px;
     font-size: 18px;
   }
+}
+
+.remember-me-text {
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
 }
 
 .sign-text {
@@ -66,5 +71,3 @@
   font-size: 15px;
   text-decoration: none;
 }
-
-br { content: ""; } 

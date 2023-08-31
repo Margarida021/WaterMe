@@ -1,6 +1,7 @@
 class Division < ApplicationRecord
   belongs_to :user
   has_many :plant_divisions, dependent: :destroy
+  has_many :plants, through: :plant_divisions
 
   CATEGORIES = ['Living Room', 'Bedroom', 'Kitchen', 'Patio', 'Bathroom', 'Hall', 'Balcony', 'Terrace', 'Office']
   LIGHT_DIRECTIONS = { 'Darker' => '0 hours of sunlight',

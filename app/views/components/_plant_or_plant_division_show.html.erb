@@ -1,48 +1,59 @@
-<div class="show-page-plant">
 
-  <div class="plant-image">
-    <%= image_tag plant.photo_url, style: "width: 300px"%>
+<div class="plant-image">
+  <%= image_tag plant.photo_url, class:"plant-image"%>
+</div>
+
+  <%= link_to image_tag("icons/arrow-circle-left.svg", class:"show-page-icon-back"), plants_path %>
+
+
+<div class="show-page-plant-container">
+
+  <div class="add-plant">
+    <%= link_to 'Add Plant +', new_plant_plant_division_path(plant), class:"btn-add-plant-card-details" %>
   </div>
 
   <div class="cards-explain-plant">
 
-    <div>
+    <div class="plant-details">
+      <h2><%= plant.name %></h2>
+      <p><%= plant.scientific_name %></p>
+      <p><%= plant.description %></p>
+    </div>
 
-      <p><%= plant.watering_freq %></p>
+    <div class="show-page-plants-mini-cards">
+
+
+      <div class="plant-attributes-cards">
+        <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
+        <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
+        <i class="fa-solid fa-arrow-up-right-dots fa-2xl plant-attributes" style="color: #f1f2e1;"></i>
+      </div>
+
+      <div class="plant-attributes-cards">
+        <p><%= plant.watering_freq %></p>
+        <p><%= plant.light_level %></p>
+        <p>Easy</p>
+      </div>
+
 
     </div>
 
-    <div>
+    <div class="show-more", data-controller="show-more-btn">
+      <div data-action="click->show-more-btn#showmore">
+        <p data-show-more-btn-target="less">Show More</p>
+      </div>
 
-      <p><%= plant.light_level %></p>
-
-    </div>
-
-    <div>
-
-      <p>Easy/Medium/Difficult to maintain?</p>
-
+      <div class="plant-info d-none", data-show-more-btn-target="show">
+        <h3>Watering recommendation:</h3>
+        <p><%= plant.care_guide.watering %></p>
+        <h3>Light recommendation:</h3>
+        <p><%= plant.care_guide.sunlight %></p>
+        <h3>Pruning recommendation:</h3>
+        <p><%= plant.care_guide.pruning %></p>
+      </div>
     </div>
 
   </div>
 
-  <div class="plant-info">
-
-    <h2>Plant Name:</h2>
-    <p><%= plant.name %></p>
-    <h2>Plant description:</h2>
-    <p><%= plant.description %></p>
-    <h2>Watering recommendation:</h2>
-    <p><%= plant.care_guide.watering %></p>
-    <h2>Light recommendation:</h2>
-    <p><%= plant.care_guide.sunlight %></p>
-    <h2>Pruning recommendation:</h2>
-    <p><%= plant.care_guide.pruning %></p>
-
-  </div>
-
-  <div class="btn-add-plant-card-search">
-    <%= link_to 'Add Plant!', new_plant_division_path(plant) %>
-  </div>
 
 </div>
