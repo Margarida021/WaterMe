@@ -1,0 +1,27 @@
+.form-search-plants {
+  margin: 0 15px;
+
+  form {
+    display: flex;
+    input {
+      border-radius: 12px;
+    }
+
+    button {
+      border-radius: 12px;
+    }
+  }
+}
+
+.container-cards-search {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  row-gap: 20px;
+  column-gap: -2px;
+
+  a:link {
+    text-decoration: none;
+  }
+}
