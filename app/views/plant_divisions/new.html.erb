@@ -23,18 +23,19 @@
 <h1>Pick one Plant</h1>
 <h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
 </div>
-
+<div data-controller='plantphotoform'>
 <%= simple_form_for [@division, @plant_division] do |f| %>
 
   <%= f.association :plant, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: Plant.all%>
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector' },
+            collection: Plant.all %>
 
 <div class="d-flex justify-content-center mb-5">
 <%= f.button :submit , class: "btn btn-primary"%>
+</div>
 </div>
 <% end %>
 
