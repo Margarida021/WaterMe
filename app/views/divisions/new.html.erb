@@ -1,28 +1,31 @@
-<div class="container">
+<div class="container" style="marginLeft:20;marginRight:20;">
 
-<div class="d-flex flex-column justify-content-center ">
+<div class="d-flex flex-column justify-content-center mt-5 mb-5">
 <h1>Pick a divison</h1>
-<h3>You can change the divison specifications later</h3>
+<h3 class="fs-6 text-muted fw-lighter">You can change the divison specifications later</h3>
 </div>
 
 
-<div class="d-flex flex-column justify-content-center ">
-<%= simple_form_for @division do |f| %>
+<div class="d-flex flex-column justify-content-center " data-controller='dividionphoto'>
+<%= simple_form_for @division, data: {dividionphoto_target: "form"} do |f| %>
  <%= f.input :name, label: 'Give a nickname to your division', hint: 'example: "Mom\'s room"' %>
   <%= f.input :category, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: Division::CATEGORIES%>
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector' },
+            collection: Division::CATEGORIES
+
+            %>
    <%= f.input :light_direction, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3',
             input_html: {class: 'category-selector'},
             collection: Division::LIGHT_DIRECTIONS.keys %>
+<div class="d-flex justify-content-center mb-5">
 <%= f.button :submit , class: "btn btn-primary"%>
-
+</div>
 <% end %>
 </div>
 
