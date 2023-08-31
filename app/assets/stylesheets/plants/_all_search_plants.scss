@@ -3,28 +3,72 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: center;
-  gap: 5px;
+  row-gap: 20px;
+  column-gap: -2px;
+
+  a:link {
+    text-decoration: none;
+  }
 }
 
 
 .card-plant-search {
 
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.card-search-plant-photo {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 
 }
 
+.links-add-more-plant {
+  .icon-link {
+    color: $medium-dark-green;
+    padding: 16px;
+    background-color: $light-green;
+    border-radius: 50%;
+  }
+
+  a:first-child {
+    margin-right: 10px;
+  }
+
+}
+
 .card-search-plant-info {
+
+  background-color: $lighter-green;
+  width: 160px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 8px;
+
   h4 {
     font-family: $headers-font;
-    font-size: 14px;
+    font-size: 12px;
+    color: $medium-dark-green;
     margin-bottom: 2px;
     max-width: 150px;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide any overflowing content */
+    text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
   }
 
   p {
     font-family: $body-font;
     font-size: 8px;
-    margin-bottom: 2px;
+    color: $medium-green;
+    margin-bottom: 0px;
   }
 }
 
