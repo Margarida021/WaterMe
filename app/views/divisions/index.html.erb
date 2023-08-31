@@ -1,3 +1,4 @@
 <%= render "components/top_profile", status: :unprocessable_entity %>
-
-<%= render "components/card_division", status: :unprocessable_entity %>
+<% @divisions.each do |division| %>
+  <%= render "components/card_division", division: division %>
+<% end %>
