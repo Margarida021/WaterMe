@@ -12,11 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <section style="min-height:90vh;">
-      <%= yield %>
+    <%= yield %>
+    <section>
+      <% if action_name == 'home' || controller_name == 'plants' || controller_name == 'divisions'&& !['sessions', 'registrations', 'passwords'].include?(controller_name) %>
+        <%= render "components/navburguer", status: :unprocessable_entity %>
+      <% end %>
     </section>
-    <% if controller_name != 'sessions' && controller_name != 'registrations' && controller_name != 'passwords' %>
-      <%= render "components/navburguer", status: :unprocessable_entity %>
-    <% end %>
   </body>
 </html>
