@@ -1,23 +1,27 @@
-<% plants.each do |plant| %>
+<div class="container-cards-search">
 
-  <div class="card-plant-search">
+  <% plants.each do |plant| %>
 
-    <%= link_to plant_path(plant.id) do %>
-      <div class="card-search-plant-photo">
-      <%# put image as background better %>
-        <%= image_tag plant.photo_url, style: "width: 300px" %>
+    <div class="card-plant-search">
+
+      <%= link_to plant_path(plant.id) do %>
+        <div class="card-search-plant-photo">
+        <%# put image as background better %>
+          <%= image_tag plant.photo_url, style: "width: 150px; height: 150px" %>
+        </div>
+
+        <div class="card-search-plant-info">
+          <h4><%= plant.name %></h4>
+          <p><%= plant.scientific_name %></p>
+        </div>
+      <% end %>
+
+      <div class="btn-add-plant-card-search">
+        <%= link_to 'Add Plant!', new_plant_division_path(plant.id) %>
       </div>
 
-      <div class="card-search-plant-info">
-        <h4><%= plant.name %></h4>
-        <p><%= plant.scientific_name %></p>
-      </div>
-    <% end %>
-
-    <div class="btn-add-plant-card-search">
-      <%= link_to 'Add Plant!', new_plant_division_path(plant.id) %>
     </div>
 
-  </div>
+  <% end %>
 
-<% end %>
+</div>

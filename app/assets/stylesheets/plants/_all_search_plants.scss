@@ -1,0 +1,37 @@
+.container-cards-search {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  gap: 5px;
+}
+
+
+.card-plant-search {
+
+
+
+}
+
+.card-search-plant-info {
+  h4 {
+    font-family: $headers-font;
+    font-size: 14px;
+    margin-bottom: 2px;
+    max-width: 150px;
+  }
+
+  p {
+    font-family: $body-font;
+    font-size: 8px;
+    margin-bottom: 2px;
+  }
+}
+
+.btn-add-plant-card-search {
+  text-align: center;
+
+  a {
+    padding: 10px;
+  }
+}
