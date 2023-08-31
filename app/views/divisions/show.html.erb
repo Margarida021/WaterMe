@@ -1,7 +1,10 @@
-<h2><%= @division.name %></h2>
-<% @division.plant_divisions.each do |plant_divison|%>
+<div class="divisions-container">
+  <%= link_to image_tag("icons/arrow-circle-left.svg", class:"icon-back"), divisions_path %>
+  <h2><%= @division.name %></h2>
+  <% @division.plant_divisions.each do |plant_divison|%>
 
-<%= link_to plant_divison.plant.name, plant_division_path(plant_divison) %>
-<% end%>
+    <%= link_to plant_divison.plant.name, plant_division_path(plant_divison) %>
+    <% end%>
 
-<%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+  <%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+</div>
