@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resources :plant_divisions, only: [:new, :create]
   end
 
-  resources :plant_divisions, only: [:show]
+  resources :plant_divisions, only: [:show, :destroy]
 end

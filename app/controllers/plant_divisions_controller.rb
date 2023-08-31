@@ -44,8 +44,8 @@ class PlantDivisionsController < ApplicationController
   end
 
   def destroy
-    @restaurant.destroy
-    redirect_to plant_division_path, status: :see_other
+    @plant_division.destroy
+    redirect_to division_path(@plant_division.division), status: :see_other
   end
 
   private

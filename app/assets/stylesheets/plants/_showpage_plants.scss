@@ -23,6 +23,20 @@
   margin-left: 20px;
 }
 
+.plant-division-icons-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -42vh;
+
+  .plant-division-icon-trash {
+    margin-right: 20px;
+  }
+  .plant-division-icon-back {
+    margin-left: 20px;
+  }
+}
+
 .plant-image {
   display: block;
   min-width: 390px;
