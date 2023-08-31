@@ -6,9 +6,7 @@ class DivisionsController < ApplicationController
   end
 
   def show
-    @division = Division.find(params[:id])
   end
-
 
   def new
     @division = Division.new
@@ -33,5 +31,4 @@ class DivisionsController < ApplicationController
   def division_params
     params.require(:division).permit(:name, :category, :light_direction)
   end
-
 end
