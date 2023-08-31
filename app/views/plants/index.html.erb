@@ -1,9 +1,6 @@
 <h1>All plants</h1>
-
 <%# Search a plant by a keyword in our DB or photo api %>
-
 <div class="form-search-results">
-
   <div class="form-search-plants">
     <%= form_with url: plants_path, method: :get, class: "" do |form| %>
       <%= form.text_field :query,
@@ -18,10 +15,7 @@
       <% end %>
     <% end %>
   </div>
-
-
   <div class="form-results-plants">
     <%= render "components/card_plant_search", plants: @plants %>
   </div>
-
 </div>

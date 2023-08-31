@@ -1,8 +1,26 @@
-<h2><%= @division.name %></h2>
-<% @division.plants.each do |plant|%>
+<div class="divisions-container">
+  <%= link_to image_tag("icons/arrow-circle-left.svg"), divisions_path %>
+  <div class="mb-2">
+    <h2><%= @division.name %></h2>
+    <p>Something here</p>
+  </div>
 
-  <p> <%= plant.name %> </p>
+  <% if @division.plant_divisions.nil? %>
+    <h3>You don't have any plants yet </h3>
+  <% end %>
 
-<% end%>
+  <% @division.plant_divisions.each do |plant_division|%>
 
-<%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+    <div class="division-details">
+      <%= image_tag (plant_division.plant.photo_url) %>
+      <div class="division-details-text">
+        <h5><%= link_to plant_division.plant.name, plant_division_path(plant_division), class:"plant-name" %></h5>
+        <p class="plant-scentific-name"><%= plant_division.plant.scientific_name %></p>
+      </div>
+    </div>
+
+
+  <% end%>
+
+  <%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+</div>

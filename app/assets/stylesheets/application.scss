@@ -12,9 +12,14 @@
 @import "pages/index";
 @import "userdevise/index";
 @import "plants/index";
+@import "divisions/index";
 
 body {
   background-color: $light-green;
   max-width: 390px;
   max-height: 844px;
+}
+
+.card-divisions {
+  padding-bottom: 100px;
 }
