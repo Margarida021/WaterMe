@@ -1,18 +1,28 @@
+<div class="container" style="marginLeft:20;marginRight:20;">
 <% if @plant %>
+<div class="d-flex flex-column justify-content-center mt-5 mb-5">
+<h1>Pick one of yours divisions</h1>
+<h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
+</div>
 <%= simple_form_for [@plant, @plant_division] do |f| %>
+
 
   <%= f.association :division, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector' },
             collection: Division.all%>
-
+<div class="d-flex justify-content-center mb-5">
 <%= f.button :submit , class: "btn btn-primary"%>
-
+</div>
 <% end %>
 
 <% else %>
+<div class="d-flex flex-column justify-content-center mt-5 mb-5">
+<h1>Pick one Plant</h1>
+<h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
+</div>
 
 <%= simple_form_for [@division, @plant_division] do |f| %>
 
@@ -23,8 +33,10 @@
             input_html: {class: 'category-selector'},
             collection: Plant.all%>
 
+<div class="d-flex justify-content-center mb-5">
 <%= f.button :submit , class: "btn btn-primary"%>
-
+</div>
 <% end %>
 
 <% end%>
+</div>
