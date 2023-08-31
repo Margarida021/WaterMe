@@ -1,8 +1,7 @@
 <h2><%= @division.name %></h2>
-<% @division.plants.each do |plant|%>
+<% @division.plant_divisions.each do |plant_divison|%>
 
-  <p> <%= plant.name %> </p>
-
+<%= link_to plant_divison.plant.name, plant_division_path(plant_divison) %>
 <% end%>
 
 <%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
