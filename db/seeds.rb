@@ -35,7 +35,7 @@ def photo_null?(plant_photo)
   if plant_photo.nil?
     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
   else
-    photo = plant_photo
+    photo = plant_photo["original_url"]
   end
 
   photo
@@ -43,7 +43,7 @@ end
 
 all_plants.first(25).each do |plant|
 
-  plant_photo = photo_null?(plant["default_image"]["original_url"])
+  plant_photo = photo_null?(plant["default_image"])
 
   new_plant = Plant.new(
     name: plant["common_name"],
