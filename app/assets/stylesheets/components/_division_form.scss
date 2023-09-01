@@ -1,4 +1,3 @@
-
 .category-wrapper {
   display: flex;
   justify-content: space-between;
@@ -6,12 +5,18 @@
 }
 
 .category-item {
-  flex: 0 0 30%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  color: #0F471D!important;
+
 }
+
 
 .category-selector {
   position: absolute;
   transform: scale(0);
+
 }
 
 .category-selector + label {
@@ -19,16 +24,17 @@
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
-  font-size: 12px;
+  font-size: 20px;
+  font-weight: bold;
   text-align: left;
-  padding: 10px 10px 30px 10px;
+  padding: 25px 25px 25px 25px;
   border: 1px solid #EAEAEA;
-  border-radius: 4px;
-  background-color: white;
+  background-color: #D2DEC3;
 }
 
 .category-selector:checked + label {
-  color: white !important;
+  color: #D2DEC3!important;
+  background-color: #0F471D!important;
 }
 
 

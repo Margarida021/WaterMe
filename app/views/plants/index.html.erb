@@ -1,6 +1,7 @@
-<h1>All plants</h1>
 <%# Search a plant by a keyword in our DB or photo api %>
 <div class="form-search-results">
+  <h2>Browse Plants</h2>
+  <p class="p-subtitle">Select your plant from our list</p>
   <div class="form-search-plants">
     <%= form_with(url: plants_path, method: :get, class: "", multipart: true) do |form| %>
       <%= form.text_field :query,
@@ -9,7 +10,7 @@
         placeholder: "Search" %>
       <%#= file_field_tag :photo, class: "form-control" %>
       <%# <i class="fa-solid fa-camera"></i> %>
-      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+      <%= button_tag type: 'submit', class: "btn btn-search-send" do %>
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
       <% end %>
     <% end %>
@@ -18,8 +19,8 @@
       <%= form.file_field :photo,
         value: params[:photo],
         class: "form-control" %>
-      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <%= button_tag type: 'submit', class: "btn btn-search-send" do %>
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
       <% end %>
     <% end %>
 

@@ -1,30 +1,48 @@
+<div class="container" style="marginLeft:20;marginRight:20;color:#233622;">
 <% if @plant %>
+<div class="d-flex flex-column justify-content-center mt-5 mb-5">
+<h1>Pick one of yours divisions</h1>
+<h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
+</div>
 <%= simple_form_for [@plant, @plant_division] do |f| %>
+
 
   <%= f.association :division, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector' },
             collection: Division.all%>
-
+<div class="d-flex justify-content-center mb-5">
 <%= f.button :submit , class: "btn btn-primary"%>
-
+</div>
 <% end %>
 
 <% else %>
-
+<div class="d-flex flex-column justify-content-center mt-5 mb-5">
+<h1>Pick one Plant</h1>
+<h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
+</div>
+<div data-controller='plantphotoform'>
 <%= simple_form_for [@division, @plant_division] do |f| %>
+
+
 
   <%= f.association :plant, as: :radio_buttons,
             collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: Plant.all%>
+            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector' },
+            collection: Plant.all.first(5),
+            label:"Pick a plant"%>
 
-<%= f.button :submit , class: "btn btn-primary"%>
+<%# <h5 id="showMoreButton" class="btn btn-light btn-sm mb-4" style="color:#233622;">Display more </h5> %>
 
+<div class="d-flex justify-content-center mb-5">
+<%= f.button :submit, "Add the plant", class: "btn btn-sign-in"%>
+</div>
+</div>
 <% end %>
 
 <% end%>
+</div>

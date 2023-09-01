@@ -4,6 +4,7 @@ class Division < ApplicationRecord
   has_many :plants, through: :plant_divisions
 
   CATEGORIES = ['Living Room', 'Bedroom', 'Kitchen', 'Patio', 'Bathroom', 'Hall', 'Balcony', 'Terrace', 'Office']
+  
   LIGHT_DIRECTIONS = { 'Darker' => '0 hours of sunlight',
                         'Shade' => 'A site far away from a window, or a north-facing window',
                         'Part sun' => 'Dappled sun throughout the day',

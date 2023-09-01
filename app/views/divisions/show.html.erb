@@ -2,19 +2,21 @@
   <%= link_to image_tag("icons/arrow-circle-left.svg"), divisions_path %>
   <div class="mb-2">
     <h2><%= @division.name %></h2>
-    <p>Something here</p>
+    <p>All my plants in this room</p>
   </div>
-  <% if @division.plant_divisions.nil? %>
-    <h3>You don't have any plants yet </h3>
-  <% end %>
-  <% @division.plant_divisions.each do |plant_division|%>
-    <div class="division-details">
-      <%= image_tag (plant_division.plant.photo_url) %>
-      <div class="division-details-text">
-        <h5><%= link_to plant_division.plant.name, plant_division_path(plant_division), class:"plant-name" %></h5>
-        <p class="plant-scentific-name"><%= plant_division.plant.scientific_name %></p>
+  <% if @division.plant_divisions.any? %>
+    <% @division.plant_divisions.each do |plant_division|%>
+      <div class="division-details">
+        <%= image_tag (plant_division.plant.photo_url) %>
+        <div class="division-details-text">
+          <h5><%= link_to plant_division.plant.name, plant_division_path(plant_division), class:"plant-name" %></h5>
+          <p class="plant-scentific-name"><%= plant_division.plant.scientific_name %></p>
+        </div>
       </div>
-    </div>
-  <% end%>
-  <%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+    <% end%>
+  <% else %>
+    <h5>You don't have any plants in this room yet :( </h5>
+    <%# image_tag ("crying_cactus"), class:"cactus-image" %>
+  <% end %>
+  <%# link_to 'Add Plant!', new_division_plant_division_path(@division) %>
 </div>
