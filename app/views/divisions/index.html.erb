@@ -1,10 +1,10 @@
 <%= render "components/top_profile", status: :unprocessable_entity %>
 <div>
-  <% if @division.nil? %>
     <% @divisions.each do |division| %>
-      <%= render "components/card_division", division: division %>
+      <% if division.plants.present? %>
+        <%= render "components/card_division", division: division %>
+      <% else %>
+        <%= render "components/nil_plants_card_division", division: division %>
+      <% end %>
     <% end %>
-  <% else %>
-    <h3>You don't have any division yet</h3>
-  <% end %>
 </div>

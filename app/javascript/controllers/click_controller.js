@@ -20,7 +20,14 @@ export default class extends Controller {
         document.querySelector(".active").classList.remove("active")
         user.classList.add("active");
       }
-     } else {
+     } else if (path == '/home')
+     {
+       let home = document.getElementById("home");
+       if (home) {
+         document.querySelector(".active").classList.remove("active")
+         home.classList.add("active");
+       }
+      } else {
       let menu = document.getElementById("menu");
       if (menu) {
         document.querySelector(".active").classList.remove("active")
