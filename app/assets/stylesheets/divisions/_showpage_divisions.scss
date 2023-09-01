@@ -7,7 +7,14 @@
     font-weight: 700;
     font-size: 36px;
   }
+  h5 {
+    text-align: center;
+    font-weight: 700;
+    color: $medium-dark-green;
+  }
+
   p {
+    color: $medium-dark-green;
     text-align: center;
     margin-bottom: 40px;
     font-size: 20px;
@@ -16,13 +23,13 @@
 }
 
 .division-details {
-  background-color: $medium-light-green;
+  background-color: $lighter-green;
   display: flex;
   max-height: 100vh;
   align-items: center;
   border-radius: 8px;
   margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.10) 0px 3px 8px;
 
   p {
     margin: 0;
@@ -65,3 +72,8 @@
   align-items: flex-start;
   padding: 0 20px 0 20px;
 }
+
+// .cactus-image {
+//   width: 200px;
+//   height: 220px;
+// }
