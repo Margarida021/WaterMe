@@ -1,23 +1,34 @@
-<% plants.each do |plant| %>
+<div class="container-cards-search">
 
-  <div class="card-plant-search">
+  <% plants.each do |plant| %>
 
-    <%= link_to plant_path(plant.id) do %>
-      <div class="card-search-plant-photo">
-      <%# put image as background better %>
-        <%= image_tag plant.photo_url, style: "width: 300px" %>
+    <div class="card-plant-search" data-controller="select-plant" data-action="click->select-plant#toggle">
+
+      <%#= link_to plant_path(plant.id) do %>
+        <div class="card-search-plant-photo" style="background-image: url(<%= plant.photo_url %>); width: 165px; height: 140px" data-select-plant-target="background">
+          <div class="links-add-more-plant d-none" data-select-plant-target="options">
+            <%= link_to new_plant_plant_division_path(plant.id) do %>
+              <i class="fa-solid fa-plus icon-link"></i>
+            <% end %>
+            <%= link_to plant_path(plant.id) do %>
+              <i class="fa-solid fa-seedling icon-link"></i>
+              <%# <i class="fa-solid fa-info icon-link"></i> %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card-search-plant-info">
+          <h4><%= plant.name %></h4>
+          <p><%= plant.scientific_name %></p>
+        </div>
+      <%# end %>
+
+      <div class="btn-add-plant-card-search">
+        <%#= link_to 'Add Plant!', new_plant_plant_division_path(plant.id) %>
       </div>
 
-      <div class="card-search-plant-info">
-        <h4><%= plant.name %></h4>
-        <p><%= plant.scientific_name %></p>
-      </div>
-    <% end %>
-
-    <div class="btn-add-plant-card-search">
-      <%# link_to 'Add Plant!', new_plant_plant_division_path(plant.id) %>
     </div>
 
-  </div>
+  <% end %>
 
-<% end %>
+</div>

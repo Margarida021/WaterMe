@@ -5,3 +5,20 @@
 .img-landing {
   width: 280px;
 }
+
+.img-profile {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.img-fixed-size-one {
+  height: 90px;
+  object-fit: cover;
+}
+
+.img-fixed-size-two {
+  height: 150px;
+  object-fit: cover;
+}
