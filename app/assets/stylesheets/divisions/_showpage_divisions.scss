@@ -2,7 +2,6 @@
   padding: 40px 20px 20px 20px;
   h2, h3 {
     text-align: center;
-    margin: 20px 0 5px 0px;
     color: $darker-green;
     font-weight: 700;
     font-size: 36px;
@@ -16,10 +15,14 @@
   p {
     color: $medium-dark-green;
     text-align: center;
-    margin-bottom: 40px;
     font-size: 20px;
     font-weight: 400;
+    margin: 0;
   }
+}
+
+.divisions-top-details {
+  margin: 40px 10px 40px 10px;
 }
 
 .division-details {
