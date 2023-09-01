@@ -2,13 +2,9 @@
   <%= link_to image_tag("icons/arrow-circle-left.svg"), divisions_path %>
   <div class="mb-2">
     <h2><%= @division.name %></h2>
-    <p>Something here</p>
+    <p>All my plants in this room</p>
   </div>
-
-
-
-
-<% if @division.plant_divisions.any? %>
+  <% if @division.plant_divisions.any? %>
     <% @division.plant_divisions.each do |plant_division|%>
       <div class="division-details">
         <%= image_tag (plant_division.plant.photo_url) %>
@@ -18,9 +14,9 @@
         </div>
       </div>
     <% end%>
-    <% else %>
-      <h3>You don't have any plants yet </h3>
- <% end %>
-
-  <%= link_to 'Add Plant!', new_division_plant_division_path(@division) %>
+  <% else %>
+    <h5>You don't have any plants in this room yet :( </h5>
+    <%# image_tag ("crying_cactus"), class:"cactus-image" %>
+  <% end %>
+  <%# link_to 'Add Plant!', new_division_plant_division_path(@division) %>
 </div>
