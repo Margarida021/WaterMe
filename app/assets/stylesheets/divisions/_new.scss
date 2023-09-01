@@ -1,0 +1,30 @@
+.new-divisions-container {
+  margin-top: 70px;
+}
+
+.new-divisions-details-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    text-align: center;
+    color: $darker-green;
+    font-weight: 700;
+    font-size: 36px;
+  }
+  .p-subtitle {
+    text-align: center;
+    color: $medium-dark-green;
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+
+.new-divisions-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
