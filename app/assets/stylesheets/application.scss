@@ -18,6 +18,8 @@ body {
   background-color: $light-green;
   max-width: 390px;
   max-height: 844px;
+  // max-width: 100vw;
+  // max-height: 100vh;
 }
 
 .padding-all {
@@ -26,4 +28,11 @@ body {
 
 .no-padding-all {
   padding-bottom: 0;
+}
+
+.bg-all {
+  background-color: $darker-green;
+  height: 100vh;
+  width: 100vw;
+  margin: auto 0;
 }
