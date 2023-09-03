@@ -13,7 +13,6 @@ class PlantsController < ApplicationController
       sql_subquery = "name ILIKE :query OR scientific_name ILIKE :query"
       @plants = @plants.where(sql_subquery, query: "%#{params[:query]}%")
     end
-
     # elsif params[:photo].present?
 
     #   photo_raw = params[:photo]
@@ -30,11 +29,14 @@ class PlantsController < ApplicationController
     #     name_sugs << plant["name"]
     #   end
 
-    #   @plants = request_perenual_api(name_sugs)
+    #   @plants = req_perenual_api_name_image(name_sugs)
     # end
   end
 
   def show
+  end
+
+  def new
   end
 
   def create
@@ -53,7 +55,7 @@ class PlantsController < ApplicationController
         name_sugs << plant["name"]
       end
 
-      @plants = request_perenual_api(name_sugs)
+      @plants = req_perenual_api_name_image(name_sugs)
       #ESTE RENDER NÃO ESTA A FUNCIONAR
       render partial: 'components/last_plants_created', locals: { plants: @plants }
     end
@@ -93,7 +95,7 @@ class PlantsController < ApplicationController
     parsed_response
   end
 
-  def request_perenual_api(plant_names_sugs)
+  def req_perenual_api_name_image(plant_names_sugs)
     plant_objects = []
 
     plant_names_sugs.each do |plant|
@@ -115,7 +117,9 @@ class PlantsController < ApplicationController
         plant_objects << { name: plant_name, scientific_name: plant_scientific_name, photo_url: plant_photo, perenual_id: plant_perenual_id, watering_freq: plant_watering_freq, light_level: plant_light_level }
       end
     end
+  end
 
+  def create_plants_perenual_api
     plants_created = 0
 
     plant_objects.each do |plant|

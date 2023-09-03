@@ -1,0 +1,2 @@
+class PlantSuggestion < ApplicationRecord
+end
