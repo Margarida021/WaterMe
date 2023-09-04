@@ -12,7 +12,6 @@ class PlantDivisionsController < ApplicationController
   end
 
   def create
-
     @plant_division = PlantDivision.new(plant_division_params)
 
     if params[:plant_id]
@@ -24,6 +23,14 @@ class PlantDivisionsController < ApplicationController
     end
 
     if @plant_division.save
+      if Date.today.strftime('%A') == params[:water][:last_watered_day]
+        watered_day = Date.today
+      else
+        watered_day = Date.today.prev_occurring(params[:water][:last_watered_day].downcase.to_sym)
+      end
+
+      Watering.create(water_date: watered_day, plant_division: @plant_division)
+
       redirect_to division_path(@plant_division.division)
     else
       render :new, status: :unprocessable_entity
