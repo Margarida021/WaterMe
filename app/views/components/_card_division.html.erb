@@ -6,7 +6,11 @@
     <% end %>
   </div>
   <div class="row">
-    <% completed_columns = division.plants.each_slice(2).to_a %>
+    <% plants = division.plants.to_a %>
+    <% if plants.size < 6 %>
+      <% plants.fill({ photo_url: "no-plants.svg"}, plants.size...6) %>
+    <% end %>
+    <% completed_columns = plants.each_slice(2).to_a %>
     <% max_images = 6 %>
     <% count_images = 0 %>
     <% completed_columns.each_with_index do |column, column_index| %>
@@ -15,7 +19,7 @@
         <div class="col-4 p-1">
           <% column.each_with_index do |image, image_index| %>
             <% count_images += 1 %>
-            <%= image_tag(image.photo_url, alt: "plant image", class: "w-100 shadow-1-strong rounded mb-2 #{order_classes[image_index % 2]}") %>
+            <%= image_tag(image[:photo_url], alt: "plant image", class: "w-100 shadow-1-strong rounded mb-2 #{order_classes[image_index % 2]}") %>
           <% end %>
         </div>
       <% else %>
@@ -25,8 +29,5 @@
     <% if division.plants.present? == false %>
       <h5 class="my-5">You don't have any plants in this room yet 🪴 </h5>
     <% end %>
-    <div class="d-flex justify-content-end">
-      <%= link_to image_tag("icons/add-fill.svg", alt: "home icon", id: "home" ), plants_path %>
-    </div>
   </div>
 </section>
