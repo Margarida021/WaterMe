@@ -128,10 +128,14 @@ class PlantsController < ApplicationController
     plant = Plant.create_with(sec_data).find_or_create_by(perenual_id: perenual_id)
 
     # Create care guide and look for it
+    careguide_create(plant_data["care-guides"], plant)
 
-    url_care_guide_plant = plant_data["care-guides"]
 
-    url_care_guide_plant_open = URI.open(url_care_guide_plant).read
+    plant
+  end
+
+  def careguide_create(url_careguide, plant)
+    url_care_guide_plant_open = URI.open(url_careguide).read
 
     plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
 
@@ -144,10 +148,13 @@ class PlantsController < ApplicationController
     care_guide.plant = plant
 
     care_guide.save
+  end
 
-    Weekday
+  def waterfreq_create
+    water_freq = WaterFrequency.create(frequency: plant_data["watering_general_benchmark"]["value"])
 
-    plant
+    weekday_create 
+
   end
 
   def photo_null?(plant_photo)
