@@ -2,11 +2,11 @@
   <%= link_to image_tag("icons/arrow-circle-left.svg")%>
   <%= link_to "skip", home_path, class:"skip" %>
 </div>
-<div id="carouselExampleIndicators" class="carousel slide bg-onboarding" data-bs-ride="carousel" style="height: 700px; top: -110px; padding-top:110px;">
-  <div class="carousel-indicators-btn">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<div id="carousel" class="carousel slide bg-onboarding" data-bs-interval="false" style="height: 700px; top: -110px; padding-top:110px;">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner" style="height: 600px">
     <div class="carousel-item active">
@@ -31,12 +31,16 @@
     </div>
   </div>
 </div>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+<div class="d-flex justify-content-between align-items-center">
+  <button class="btn-sign-in" data-bs-target="#carousel" data-bs-slide="prev">Back</button>
+  <button class="btn-next" data-bs-target="#carousel" data-bs-slide="next">Next</button>
+</div>
+<%# <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
   <span class="visually-hidden">Previous</span>
 </button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
   <span class="carousel-control-next-icon" aria-hidden="true"></span>
   <span class="visually-hidden">Next</span>
-</button>
+</button> %>
 </div>
