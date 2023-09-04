@@ -145,6 +145,8 @@ class PlantsController < ApplicationController
 
     care_guide.save
 
+    Weekday
+
     plant
   end
 
