@@ -5,6 +5,9 @@
     <%= render "components/card_division", division: division %>
   <% end %>
   <% else %>
-  <h3>You don't have any divisions yet</h3>
+    <div class="divisions-home-details">
+      <h5>You don't have any divisions yet :(</h5>
+      <%= image_tag ("plant.svg") %>
+    </div>
   <% end %>
 </div>
