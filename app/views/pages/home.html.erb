@@ -8,16 +8,19 @@
 <%= image_tag "sunn.svg", style:"margin-left: 75px; width:100px;margin-top: 50px;"%>
 </div>
 
-<div class="d-flex justify-content-center mb-5 mt-5">
+<div class="d-flex justify-content-evenly mb-5 mt-5">
+<%= link_to new_division_path, class:"removelink" do %>
+<div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
+<% end %>
 
-<a href=<%= new_division_path %> class="btn btn-box d-flex justify-content-center align-items-center" style="color:#233622;" > <h1>Add a new division</h1> </a>
+<%= link_to plants_path, class:"removelink" do %>
+  <div class="btn-home p-3"><h1>ADD</h1>  <h2>NEW PLANT</h2> <%= image_tag("Vector.svg", class: "img-btn")%></div>
+<% end %>
 
 </div>
 
 <div class="d-flex justify-content-center">
 
-
-<a href=<%=plants_path %> class="btn btn-box d-flex justify-content-center align-items-center" style="color:#233622;"> <h1>Add a new plant </h1></a>
 </div>
 
 
