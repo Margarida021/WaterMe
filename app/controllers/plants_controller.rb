@@ -21,7 +21,7 @@ class PlantsController < ApplicationController
   end
 
   def create
-    raise
+    perenual_id = params[:perenual_id]
     @plant = plant_creation(perenual_id)
 
     redirect_to plant_path(@plant)
@@ -122,7 +122,7 @@ class PlantsController < ApplicationController
       description: plant_data["description"],
       watering_freq: plant_data["watering"],
       light_level: plant_data["sunlight"][0],
-      photo_url: photo_null?(result["default_image"])
+      photo_url: photo_null?(plant_data["default_image"])
     }
 
     plant = Plant.create_with(sec_data).find_or_create_by(perenual_id: perenual_id)
@@ -131,7 +131,7 @@ class PlantsController < ApplicationController
 
     url_care_guide_plant = plant_data["care-guides"]
 
-    url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+    url_care_guide_plant_open = URI.open(url_care_guide_plant).read
 
     plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
 
