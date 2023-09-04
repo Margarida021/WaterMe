@@ -1,2 +1,0 @@
-class PlantSuggestion < ApplicationRecord
-end

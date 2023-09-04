@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PlantSuggestionTest < ActiveSupport::TestCase
+class PlantSuggestionsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

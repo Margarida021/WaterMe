@@ -7,39 +7,27 @@ class PlantsController < ApplicationController
   before_action :set_plant, only: %i[show]
 
   def index
-    @plants = Plant.all
-
-    if params[:query].present?
+    if params[:query] == 'from_api' && params[:plants_sugs].present?
+      @plants = params[:plants_sugs]
+    elsif params[:query].present?
       sql_subquery = "name ILIKE :query OR scientific_name ILIKE :query"
       @plants = @plants.where(sql_subquery, query: "%#{params[:query]}%")
+    else
+      @plants = Plant.all
     end
-    # elsif params[:photo].present?
-
-    #   photo_raw = params[:photo]
-
-    #   photo = photo_to_base64(photo_raw)
-
-    #   plants_sug_raw = request_photo_api(photo)
-
-    #   plants_sugs = plants_sug_raw["results"]["classification"]["suggestions"].first(3)
-
-    #   name_sugs = []
-
-    #   plants_sugs.each do |plant|
-    #     name_sugs << plant["name"]
-    #   end
-
-    #   @plants = req_perenual_api_name_image(name_sugs)
-    # end
   end
 
   def show
   end
 
-  def new
+  def create
+    raise
+    @plant = plant_creation(perenual_id)
+
+    redirect_to plant_path(@plant)
   end
 
-  def create
+  def api
     if params[:photo].present?
       photo_raw = params[:photo]
 
@@ -47,7 +35,7 @@ class PlantsController < ApplicationController
 
       plants_sug_raw = request_photo_api(photo)
 
-      plants_sugs = plants_sug_raw["result"]["classification"]["suggestions"].first(1)
+      plants_sugs = plants_sug_raw["result"]["classification"]["suggestions"].first(3)
 
       name_sugs = []
 
@@ -55,9 +43,9 @@ class PlantsController < ApplicationController
         name_sugs << plant["name"]
       end
 
-      @plants = req_perenual_api_name_image(name_sugs)
-      #ESTE RENDER NÃO ESTA A FUNCIONAR
-      render partial: 'components/last_plants_created', locals: { plants: @plants }
+      @plants_sugs = req_perenual_api_name_image(name_sugs)
+
+      redirect_to plants_path(query: 'from_api', plants_sugs: @plants_sugs)
     end
   end
 
@@ -108,72 +96,56 @@ class PlantsController < ApplicationController
       search_results = JSON.parse(url_open)["data"].first(1)
 
       search_results.each do |result|
-        plant_name = result["common_name"]
+        plant_name = result["common_name"].capitalize
         plant_scientific_name = result["scientific_name"][0]
         plant_photo = photo_null?(result["default_image"])
-        plant_watering_freq = result["watering"]
-        plant_light_level = result["sunlight"][0]
+        # plant_watering_freq = result["watering"]
+        # plant_light_level = result["sunlight"][0]
         plant_perenual_id = result["id"]
-        plant_objects << { name: plant_name, scientific_name: plant_scientific_name, photo_url: plant_photo, perenual_id: plant_perenual_id, watering_freq: plant_watering_freq, light_level: plant_light_level }
+        plant_objects << { name: plant_name, scientific_name: plant_scientific_name, photo_url: plant_photo, perenual_id: plant_perenual_id }
       end
     end
+
+    plant_objects
   end
 
-  def create_plants_perenual_api
-    plants_created = 0
+  def plant_creation(perenual_id)
+    url_detail_plant = "https://perenual.com/api/species/details/#{perenual_id}?key=#{ENV["PERENUAL_API"]}"
 
-    plant_objects.each do |plant|
-      sec_data = {
-        name: plant[:name].capitalize,
-        scientific_name: plant[:scientific_name],
-        description: "Beautiful plant",
-        watering_freq: plant[:watering_freq],
-        light_level: plant[:light_level],
-        photo_url: plant[:photo_url]
-      }
-      Plant.create_with(sec_data).find_or_create_by(perenual_id: plant[:perenual_id])
-      plants_created += 1 if Plant.create_with(sec_data).find_or_create_by(perenual_id: plant[:perenual_id])
-    end
+    url_detail_plant_open = URI.open(url_detail_plant).read
 
-    last_plants = Plant.last(plants_created)
+    plant_data = JSON.parse(url_detail_plant_open)
 
-    care_guide_desc_creation(last_plants)
+    sec_data = {
+      name: plant_data["common_name"].capitalize,
+      scientific_name: plant_data["scientific_name"][0],
+      description: plant_data["description"],
+      watering_freq: plant_data["watering"],
+      light_level: plant_data["sunlight"][0],
+      photo_url: photo_null?(result["default_image"])
+    }
 
-    last_plants
-  end
+    plant = Plant.create_with(sec_data).find_or_create_by(perenual_id: perenual_id)
 
-  def care_guide_desc_creation(plants_created)
-    # Look description
+    # Create care guide and look for it
 
-    plants_created.each do |plant|
-      perenual_id = plant.perenual_id
+    url_care_guide_plant = plant_data["care-guides"]
 
-      url_detail_plant = "https://perenual.com/api/species/details/#{perenual_id}?key=#{ENV["PERENUAL_API"]}"
+    url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
 
-      url_detail_plant_open = URI.open(url_detail_plant).read
+    plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
 
-      plant_data = JSON.parse(url_detail_plant_open)
+    care_guide = CareGuide.new(
+      watering: plant_care_guide[0]["description"],
+      sunlight: plant_care_guide[1]["description"],
+      pruning: plant_care_guide[2]["description"]
+    )
 
-      plant.update(description: plant_data["description"])
+    care_guide.plant = plant
 
-      # Create care guide and look for it
+    care_guide.save
 
-      url_care_guide_plant = plant_data["care-guides"]
-
-      url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
-
-      plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
-
-      care_guide = CareGuide.new(
-        watering: plant_care_guide[0]["description"],
-        sunlight: plant_care_guide[1]["description"],
-        pruning: plant_care_guide[2]["description"]
-      )
-
-      care_guide.plant = plant
-
-      care_guide.save
-    end
+    plant
   end
 
   def photo_null?(plant_photo)
@@ -187,4 +159,62 @@ class PlantsController < ApplicationController
 
     photo
   end
+
+  # def create_plants_perenual_api
+  #   plants_created = 0
+
+  #   plant_objects.each do |plant|
+  #     sec_data = {
+  #       name: plant[:name].capitalize,
+  #       scientific_name: plant[:scientific_name],
+  #       description: "Beautiful plant",
+  #       watering_freq: plant[:watering_freq],
+  #       light_level: plant[:light_level],
+  #       photo_url: plant[:photo_url]
+  #     }
+  #     Plant.create_with(sec_data).find_or_create_by(perenual_id: plant[:perenual_id])
+  #     plants_created += 1 if Plant.create_with(sec_data).find_or_create_by(perenual_id: plant[:perenual_id])
+  #   end
+
+  #   last_plants = Plant.last(plants_created)
+
+  #   care_guide_desc_creation(last_plants)
+
+  #   last_plants
+  # end
+
+  # def care_guide_desc_creation(plants_created)
+  #   # Look description
+
+  #   plants_created.each do |plant|
+  #     perenual_id = plant.perenual_id
+
+  #     url_detail_plant = "https://perenual.com/api/species/details/#{perenual_id}?key=#{ENV["PERENUAL_API"]}"
+
+  #     url_detail_plant_open = URI.open(url_detail_plant).read
+
+  #     plant_data = JSON.parse(url_detail_plant_open)
+
+  #     plant.update(description: plant_data["description"])
+
+  #     # Create care guide and look for it
+
+  #     url_care_guide_plant = plant_data["care-guides"]
+
+  #     url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+
+  #     plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
+
+  #     care_guide = CareGuide.new(
+  #       watering: plant_care_guide[0]["description"],
+  #       sunlight: plant_care_guide[1]["description"],
+  #       pruning: plant_care_guide[2]["description"]
+  #     )
+
+  #     care_guide.plant = plant
+
+  #     care_guide.save
+  #   end
+  # end
+
 end
