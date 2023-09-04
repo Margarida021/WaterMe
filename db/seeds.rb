@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'json'
-
 # DESTROY ALL RECORDS IN THE DB
 puts "Reseting DataBase"
 User.destroy_all
@@ -8,6 +7,9 @@ Plant.destroy_all
 Division.destroy_all
 PlantDivision.destroy_all
 CareGuide.destroy_all
+WaterFrequencyWeekday.destroy_all
+Weekday.destroy_all
+WaterFrequency.destroy_all
 puts "DataBase Reseted"
 
 # CREATE AN USER
@@ -23,9 +25,26 @@ puts "Division created"
 
 # CREATE 3 WATER FREQUENCIES
 puts "Creating waterfrequency"
-WaterFrequency.create(frequency: "Frequent", times_per_week: 3)
-WaterFrequency.create(frequency: "Moderate", times_per_week: 2)
-WaterFrequency.create(frequency: "Average", times_per_week: 1)
+sunday = Weekday.create(day: "Sunday")
+monday = Weekday.create(day: "Monday")
+tuesday = Weekday.create(day: "Tuesday")
+wednesday = Weekday.create(day: "Wednesday")
+thursday = Weekday.create(day: "Thursday")
+friday = Weekday.create(day: "Friday")
+saturday = Weekday.create(day: "Saturday")
+
+frequent = WaterFrequency.create(frequency: "Frequent")
+frequent_monday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: monday)
+frequent_wednesday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: wednesday)
+frequent_friday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: friday)
+
+moderate = WaterFrequency.create(frequency: "Moderate")
+moderate_monday = WaterFrequencyWeekday.create(water_frequency: moderate, weekday: monday)
+moderate_wednesday = WaterFrequencyWeekday.create(water_frequency: moderate, weekday: wednesday)
+
+average = WaterFrequency.create(frequency: "Average")
+average_monday = WaterFrequencyWeekday.create(water_frequency: average, weekday: monday)
+
 puts "Created waterfrequency"
 
 # LOOK FOR ALL PLANTS
@@ -35,7 +54,6 @@ url = "https://perenual.com/api/species-list?page=1&key=#{ENV["PERENUAL_API"]}"
 url_open = URI.open(url).read
 
 all_plants = JSON.parse(url_open)["data"]
-
 
 # POPULATING DB WITH PLANTS FROM PERENUAL API
 def photo_null?(plant_photo)
@@ -66,7 +84,7 @@ all_plants.first(25).each do |plant|
   )
 
   new_plant.save
-  puts "#{plant.name} created"
+  puts "#{new_plant.name} created"
 end
 puts "seeds generated"
 # LOOK FOR AND UPDATE DESCRIPTION OF THE PLANT & CREATE CARE GUIDE

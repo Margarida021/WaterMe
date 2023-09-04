@@ -8,7 +8,7 @@
 
 <div data-controller='dividionphoto'>
   <%= simple_form_for @division, data: {dividionphoto_target: "form"} do |f| %>
-    <%= f.input :name, label: 'Give a nickname to your division', hint: 'i.e: "Mom\'s room"' %>
+    <%= f.input :name, label: 'Give a name to your division', hint: 'i.e: "Mom\'s room"' %>
       <%= f.input :category, as: :radio_buttons,
                 collection_wrapper_tag: 'div',
                 collection_wrapper_class: 'category-wrapper d-flex flex-column ',

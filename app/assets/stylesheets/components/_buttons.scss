@@ -129,3 +129,18 @@
 .removelink{
   text-decoration: none;
 }
+
+.btn-create-plant-division {
+  background-color: $darker-green;
+  color: $lighter-green;
+  height: 50px;
+  width: 225px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
