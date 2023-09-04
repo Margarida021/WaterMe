@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_03_190913) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_112905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,15 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_190913) do
     t.index ["plant_id"], name: "index_plant_divisions_on_plant_id"
   end
 
-  create_table "plant_suggestions", force: :cascade do |t|
-    t.string "name"
-    t.string "scientific_name"
-    t.string "photo_url"
-    t.integer "perenual_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "plants", force: :cascade do |t|
     t.string "name"
     t.string "scientific_name"
@@ -87,9 +78,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_190913) do
     t.string "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "watering_freq"
     t.string "light_level"
     t.integer "perenual_id"
+    t.bigint "water_frequency_id", null: false
+    t.index ["water_frequency_id"], name: "index_plants_on_water_frequency_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -105,10 +97,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_190913) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "water_frequencies", force: :cascade do |t|
+    t.string "frequency"
+    t.integer "times_per_week"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "care_guides", "plants"
   add_foreign_key "divisions", "users"
   add_foreign_key "plant_divisions", "divisions"
   add_foreign_key "plant_divisions", "plants"
+  add_foreign_key "plants", "water_frequencies"
 end
