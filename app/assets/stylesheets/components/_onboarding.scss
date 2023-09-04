@@ -1,17 +1,54 @@
+.onboard {
+  margin: 40px 20px;
+}
+
+.item {
+  background: $lighter-green;
+  top: 0;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .skip {
   font-family: $headers-font;
   font-size: 26px;
   color: $darker-green;
+  text-decoration: none;
 }
 
 .tit {
   font-family: $headers-font;
   font-size: 26px;
   color: $darker-green;
+  text-align: center;
 }
 
 .text {
   font-family: $body-font;
   font-size: 20px;
   color: $medium-dark-green;
+  margin: 0 25px;
+  text-align: center;
+}
+
+.carousel-caption-txt {
+  position: absolute;
+  //right: 15%;
+  //bottom: -18.75rem;
+  //left: 15%;
+  //padding-top: 1.25rem;
+  //padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+  //margin: -20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.img-onboarding {
+  margin: 50px 0 32px 35px;
 }
