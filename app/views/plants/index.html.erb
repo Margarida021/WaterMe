@@ -15,7 +15,7 @@
       <% end %>
     <% end %>
 
-    <%= form_with(url: plants_path, method: :post, class: "ff", multipart: true) do |form| %>
+    <%= form_with(url: plant_rec_path , method: :post, class: "ff", multipart: true) do |form| %>
       <%= form.file_field :photo,
         value: params[:photo],
         class: "form-control" %>

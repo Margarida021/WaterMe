@@ -1,24 +1,38 @@
 <div class="container-cards-search">
-
   <% plants.each do |plant| %>
 
     <div class="card-plant-search" data-controller="select-plant" data-action="click->select-plant#toggle">
 
       <%#= link_to plant_path(plant.id) do %>
-        <div class="card-search-plant-photo" style="background-image: url(<%= plant.photo_url %>); width: 165px; height: 140px" data-select-plant-target="background">
+        <div class="card-search-plant-photo" style="background-image: url(<%= plant[:photo_url] %>); width: 165px; height: 140px" data-select-plant-target="background">
           <div class="links-add-more-plant d-none" data-select-plant-target="options">
-            <%= link_to new_plant_plant_division_path(plant.id) do %>
-              <i class="fa-solid fa-plus icon-link"></i>
+
+            <% if params["plants_sugs"].present? %>
+              <%#= link_to plants_path(plant[:perenual_id]) do %>
+                <%# <i class="fa-solid fa-plus icon-link"></i> %>
+              <%# end %>
+              <%= form_with(url: plants_path, method: :post) do |form| %>
+                <%= hidden_field_tag :perenual_id, plant[:perenual_id] %>
+                <button type="submit" class="icon-link">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              <% end %>
+
+            <% else %>
+              <%= link_to new_plant_plant_division_path(plant[:id]) do %>
+                <i class="fa-solid fa-plus icon-link"></i>
+              <% end %>
+              <%= link_to plant_path(plant[:id]) do %>
+                <i class="fa-solid fa-ellipsis icon-link"></i>
+              <% end %>
             <% end %>
-            <%= link_to plant_path(plant.id) do %>
-              <i class="fa-solid fa-ellipsis icon-link"></i>
-            <% end %>
+
           </div>
         </div>
 
         <div class="card-search-plant-info">
-          <h4><%= plant.name %></h4>
-          <p><%= plant.scientific_name %></p>
+          <h4><%= plant[:name] %></h4>
+          <p><%= plant[:scientific_name] %></p>
         </div>
       <%# end %>
 
