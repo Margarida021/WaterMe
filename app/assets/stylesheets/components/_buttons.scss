@@ -85,3 +85,45 @@
   display: flex;
   background-color: #174A41;
 }
+
+.btn-home{
+  width: 170px;
+  height: 178px;
+  border-radius: 16px;
+  background: #E3DEC1;
+}
+
+.btn-home h1{
+  color: #174A41;
+  text-align: center;
+  font-family: "Rubik";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.btn-home h2{
+  color: #174A41;
+  text-align: center;
+  font-family: "Rubik";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.img-btn{
+  position: relative;
+  bottom:10px;
+  left: 30px;
+}
+.img-btn-h{
+  position: relative;
+  bottom:4px;
+  left: 30px;
+}
+
+.removelink{
+  text-decoration: none;
+}
