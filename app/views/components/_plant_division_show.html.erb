@@ -17,7 +17,7 @@
         <div class="plant-attributes-cards">
           <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
           <p><%= plant_division.water_frequency.frequency %></p>
-          <p><%= plant_division.water_frequency.times_per_week %>x a week</p>
+          <p><%= plant_division.water_frequency.weekdays.count %>x a week</p>
         </div>
         <div class="plant-attributes-cards">
           <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>

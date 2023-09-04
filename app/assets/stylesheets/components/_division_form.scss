@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .category-item {
@@ -12,11 +13,22 @@
 
 }
 
-
 .category-selector {
   position: absolute;
   transform: scale(0);
+}
 
+.col-form-label {
+  font-size: 20px;
+  font-family: $body-font;
+  font-weight: 700;
+  color: $medium-dark-green;
+}
+
+.days {
+  .form-check-label {
+    text-align: center;
+  }
 }
 
 .category-selector + label {
@@ -28,13 +40,20 @@
   font-weight: bold;
   text-align: left;
   padding: 25px 25px 25px 25px;
-  border: 1px solid #EAEAEA;
-  background-color: #D2DEC3;
+  // border: 1px solid #EAEAEA;
+  border-radius: 8px;
+  background-color: $medium-light-green;
+}
+
+.wrap-days {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
 }
 
 .category-selector:checked + label {
-  color: #D2DEC3!important;
-  background-color: #0F471D!important;
+  color: $lighter-green!important;
+  background-color: $medium-dark-green!important;
 }
 
 
