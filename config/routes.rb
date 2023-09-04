@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root to: "pages#landing"
   get "home", to: "pages#home"
+  get "onboarding", to: "pages#onboarding"
 
   resources :divisions do
     resources :plant_divisions, only: [:new, :create]
