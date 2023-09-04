@@ -21,12 +21,12 @@ Division.create(name: "Mi Baranda", category: 'Balcony', light_direction: 'Full 
 Division.create(name: "Mi Cuarto", category: 'Bedroom', light_direction: 'Shade', user_id: User.last)
 puts "Division created"
 
+# CREATE 3 WATER FREQUENCIES
 puts "Creating waterfrequency"
 WaterFrequency.create(frequency: "Frequent", times_per_week: 3)
 WaterFrequency.create(frequency: "Moderate", times_per_week: 2)
 WaterFrequency.create(frequency: "Average", times_per_week: 1)
 puts "Created waterfrequency"
-
 
 # LOOK FOR ALL PLANTS
 
