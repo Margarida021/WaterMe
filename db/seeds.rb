@@ -2,22 +2,31 @@ require 'open-uri'
 require 'json'
 
 # DESTROY ALL RECORDS IN THE DB
-
+puts "Reseting DataBase"
 User.destroy_all
 Plant.destroy_all
 Division.destroy_all
 PlantDivision.destroy_all
 CareGuide.destroy_all
+puts "DataBase Reseted"
 
 # CREATE AN USER
-
+puts "Creating user"
 User.create(name: "Armindo", email: "admin@lewagon.pt", password: "123456")
+puts "User created"
 
 # CREATE 2 DIVISIONS
-
+puts "Creating division"
 Division.create(name: "Mi Baranda", category: 'Balcony', light_direction: 'Full sun', user_id: User.last)
-
 Division.create(name: "Mi Cuarto", category: 'Bedroom', light_direction: 'Shade', user_id: User.last)
+puts "Division created"
+
+# CREATE 3 WATER FREQUENCIES
+puts "Creating waterfrequency"
+WaterFrequency.create(frequency: "Frequent", times_per_week: 3)
+WaterFrequency.create(frequency: "Moderate", times_per_week: 2)
+WaterFrequency.create(frequency: "Average", times_per_week: 1)
+puts "Created waterfrequency"
 
 # LOOK FOR ALL PLANTS
 
@@ -41,6 +50,7 @@ def photo_null?(plant_photo)
   photo
 end
 
+puts "generating new seeds"
 all_plants.first(25).each do |plant|
 
   plant_photo = photo_null?(plant["default_image"])
@@ -50,19 +60,20 @@ all_plants.first(25).each do |plant|
     scientific_name: plant["scientific_name"][0],
     description: "Beautiful #{plant["common_name"]} plant",
     photo_url: plant_photo,
-    watering_freq: plant["watering"],
+    water_frequency: WaterFrequency.find_by(frequency: plant["watering"]),
     light_level: plant["sunlight"][0],
     perenual_id: plant["id"]
   )
 
   new_plant.save
-
+  puts "#{plant.name} created"
 end
-
+puts "seeds generated"
 # LOOK FOR AND UPDATE DESCRIPTION OF THE PLANT & CREATE CARE GUIDE
 
 plants = Plant.all
 
+puts "generating care guide"
 plants.each do |plant|
 
   # Look description
@@ -96,3 +107,4 @@ plants.each do |plant|
   care_guide.save!
 
 end
+puts "care guide generated"

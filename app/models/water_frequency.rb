@@ -1,0 +1,2 @@
+class WaterFrequency < ApplicationRecord
+end

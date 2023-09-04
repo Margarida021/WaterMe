@@ -8,41 +8,28 @@
   </div>
 </div>
 
-
-
 <div class="show-page-plant-container">
-
   <div class="cards-explain-plant">
-
     <div class="plant-details">
       <h2><%= plant_division.name %></h2>
       <p><%= plant_division.scientific_name %></p>
+      <div class="show-page-plants-mini-cards">
+        <div class="plant-attributes-cards">
+          <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
+          <p><%= plant_division.water_frequency.frequency %></p>
+          <p><%= plant_division.water_frequency.times_per_week %>x a week</p>
+        </div>
+        <div class="plant-attributes-cards">
+          <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
+          <p><%= plant_division.light_level %></p>
+        </div>
+      </div>
       <p><%= plant_division.description %></p>
     </div>
-
-    <div class="show-page-plants-mini-cards">
-
-
-      <div class="plant-attributes-cards">
-        <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
-        <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
-        <i class="fa-solid fa-arrow-up-right-dots fa-2xl plant-attributes" style="color: #f1f2e1;"></i>
-      </div>
-
-      <div class="plant-attributes-cards">
-        <p><%= plant_division.watering_freq %></p>
-        <p><%= plant_division.light_level %></p>
-        <p>Easy</p>
-      </div>
-
-
-    </div>
-
     <div class="show-more", data-controller="show-more-btn">
       <div data-action="click->show-more-btn#showmore">
         <p data-show-more-btn-target="less">Show More</p>
       </div>
-
       <div class="plant-info d-none", data-show-more-btn-target="show">
         <h3>Watering recommendation:</h3>
         <p><%= plant_division.care_guide.watering %></p>

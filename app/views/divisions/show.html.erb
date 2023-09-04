@@ -19,8 +19,10 @@
       </div>
     <% end%>
   <% else %>
-    <h5>You don't have any plants in this room yet :( </h5>
-    <%# image_tag ("crying_cactus"), class:"cactus-image" %>
+     <div class="divisions-home-details">
+      <h5>You don't have any plants yet :(</h5>
+      <%= image_tag ("plant.svg") %>
+    </div>
   <% end %>
   <%# link_to 'Add Plant!', new_division_plant_division_path(@division) %>
 </div>

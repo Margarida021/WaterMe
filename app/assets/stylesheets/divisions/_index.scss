@@ -1,2 +1,20 @@
 @import "showpage_divisions";
 @import "new";
+
+
+.divisions-home-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  h5 {
+    color: $darker-green;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0 40px 0;
+  }
+
+  img {
+    height: 200px;
+  }
+}
