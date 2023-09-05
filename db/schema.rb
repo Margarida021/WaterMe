@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_104754) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_161818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,9 +79,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_104754) do
     t.string "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "watering_freq"
     t.string "light_level"
     t.integer "perenual_id"
+    t.bigint "water_frequency_id", null: false
+    t.index ["water_frequency_id"], name: "index_plants_on_water_frequency_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,10 +98,43 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_104754) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "water_frequencies", force: :cascade do |t|
+    t.string "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "water_frequency_weekdays", force: :cascade do |t|
+    t.bigint "water_frequency_id", null: false
+    t.bigint "weekday_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["water_frequency_id"], name: "index_water_frequency_weekdays_on_water_frequency_id"
+    t.index ["weekday_id"], name: "index_water_frequency_weekdays_on_weekday_id"
+  end
+
+  create_table "waterings", force: :cascade do |t|
+    t.date "water_date"
+    t.bigint "plant_division_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_division_id"], name: "index_waterings_on_plant_division_id"
+  end
+
+  create_table "weekdays", force: :cascade do |t|
+    t.string "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "care_guides", "plants"
   add_foreign_key "divisions", "users"
   add_foreign_key "plant_divisions", "divisions"
   add_foreign_key "plant_divisions", "plants"
+  add_foreign_key "plants", "water_frequencies"
+  add_foreign_key "water_frequency_weekdays", "water_frequencies"
+  add_foreign_key "water_frequency_weekdays", "weekdays"
+  add_foreign_key "waterings", "plant_divisions"
 end

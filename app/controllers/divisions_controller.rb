@@ -22,6 +22,15 @@ class DivisionsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    @division.update(division_params)
+    redirect_to division_path(@division)
+  end
+
   def destroy
     @division.destroy
     redirect_to divisions_path, status: :see_other

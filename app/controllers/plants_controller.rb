@@ -120,18 +120,21 @@ class PlantsController < ApplicationController
       name: plant_data["common_name"].capitalize,
       scientific_name: plant_data["scientific_name"][0],
       description: plant_data["description"],
-      watering_freq: plant_data["watering"],
-      light_level: plant_data["sunlight"][0],
+      water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
+      light_level: plant_data["sunlight"][0].capitalize,
       photo_url: photo_null?(plant_data["default_image"])
     }
 
     plant = Plant.create_with(sec_data).find_or_create_by(perenual_id: perenual_id)
 
     # Create care guide and look for it
+    careguide_create(plant_data["care-guides"], plant)
 
-    url_care_guide_plant = plant_data["care-guides"]
+    plant
+  end
 
-    url_care_guide_plant_open = URI.open(url_care_guide_plant).read
+  def careguide_create(url_careguide, plant)
+    url_care_guide_plant_open = URI.open(url_careguide).read
 
     plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
 
@@ -144,8 +147,6 @@ class PlantsController < ApplicationController
     care_guide.plant = plant
 
     care_guide.save
-
-    plant
   end
 
   def photo_null?(plant_photo)

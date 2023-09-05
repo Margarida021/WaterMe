@@ -14,28 +14,25 @@
   <div class="cards-explain-plant">
 
     <div class="plant-details">
+
       <h2><%= plant.name %></h2>
       <p><%= plant.scientific_name %></p>
+
+      <div class="show-page-plants-mini-cards">
+        <div class="plant-attributes-cards">
+          <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
+          <p><%= plant.water_frequency.frequency %></p>
+          <p><%= plant.water_frequency.weekdays.count %>x a week</p>
+        </div>
+        <div class="plant-attributes-cards">
+          <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
+          <p><%= plant.light_level %></p>
+        </div>
+      </div>
+
       <p><%= plant.description %></p>
     </div>
 
-    <div class="show-page-plants-mini-cards">
-
-
-      <div class="plant-attributes-cards">
-        <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>
-        <%= image_tag ("icons/sun.svg"),  class:"plant-attributes"  %>
-        <i class="fa-solid fa-arrow-up-right-dots fa-2xl plant-attributes" style="color: #f1f2e1;"></i>
-      </div>
-
-      <div class="plant-attributes-cards">
-        <p><%= plant.watering_freq %></p>
-        <p><%= plant.light_level %></p>
-        <p>Easy</p>
-      </div>
-
-
-    </div>
 
     <div class="show-more", data-controller="show-more-btn">
       <div data-action="click->show-more-btn#showmore">

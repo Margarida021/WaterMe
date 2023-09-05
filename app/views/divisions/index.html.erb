@@ -1,6 +1,13 @@
 <%= render "components/top_profile", status: :unprocessable_entity %>
 <div>
+  <% if @divisions.any? %>
   <% @divisions.each do |division| %>
     <%= render "components/card_division", division: division %>
+  <% end %>
+  <% else %>
+    <div class="divisions-home-details">
+      <h5>You don't have any divisions yet :(</h5>
+      <%= image_tag ("house.svg") %>
+    </div>
   <% end %>
 </div>

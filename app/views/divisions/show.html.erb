@@ -1,6 +1,7 @@
 <div class="divisions-container">
   <div class="d-flex">
     <%= link_to image_tag("icons/arrow-circle-left.svg"), divisions_path, class:"flex-grow-1" %>
+    <%= link_to image_tag("icons/Edit.svg", class:"me-1"), edit_division_path%>
     <%= link_to image_tag("icons/trash.svg", class:"plant-division-icon-trash"), division_path(@division.id), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
   </div>
 
@@ -19,8 +20,10 @@
       </div>
     <% end%>
   <% else %>
-    <h5>You don't have any plants in this room yet :( </h5>
-    <%# image_tag ("crying_cactus"), class:"cactus-image" %>
+     <div class="divisions-home-details">
+      <h5>You don't have any plants yet :(</h5>
+      <%= image_tag ("plant.svg") %>
+    </div>
   <% end %>
   <%# link_to 'Add Plant!', new_division_plant_division_path(@division) %>
 </div>
