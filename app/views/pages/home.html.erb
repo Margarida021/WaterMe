@@ -30,6 +30,7 @@
         <div>
           <p><%= plant_division.plant.name %></p>
           <p><%= plant_division.division.name %></p>
+          <%= button_to "Water", waterings_path(plant_division_id: plant_division.id), method: :post %>
         </div>
       <% end %>
     </div>
@@ -37,4 +38,5 @@
       <h5>Good job, all your plants are watered :D</h5>
     <% end %>
   </div>
+
 </div>
