@@ -1,8 +1,8 @@
 <div class="container new-divisions-container" style="marginLeft:20;marginRight:20;color:#233622;">
 
   <div class="new-divisions-details-top">
-    <h2>Pick a divison</h2>
-    <p class="p-subtitle">You can change the specifications later</p>
+    <h2>Edit <%= @division.name %></h2>
+
   </div>
 
 
@@ -19,8 +19,8 @@
       <%= f.input :light_direction, as: :radio_buttons,
                 collection_wrapper_tag: 'div',
                 collection_wrapper_class: 'category-wrapper d-flex flex-column ',
-                item_wrapper_class: 'category-item  dc ',
-                input_html: {class: 'borda category-selector '},
+                item_wrapper_class: 'category-item dc ',
+                input_html: {class: 'borda category-selector'},
                 collection: Division::LIGHT_DIRECTIONS.keys %>
   <div class="d-flex justify-content-center">
     <%= f.button :submit , class: "btn btn-create-division"%>

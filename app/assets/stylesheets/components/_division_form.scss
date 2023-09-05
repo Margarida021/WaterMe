@@ -40,10 +40,13 @@
   font-weight: bold;
   text-align: left;
   padding: 25px 25px 25px 25px;
-  // border: 1px solid #EAEAEA;
   border-top-right-radius: 8px;
   border-bottom-right-radius:  8px;
   background-color: $medium-light-green;
+}
+
+.borda + label {
+  border-radius: 8px!important;
 }
 
 .wrap-days {
@@ -63,4 +66,8 @@
   padding-bottom: 5px;
   color: #0F471D!important;
 
+}
+
+.form-check-label{
+  color: #0F471D!important;
 }
