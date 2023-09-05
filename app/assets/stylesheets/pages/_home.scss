@@ -1,1 +1,24 @@
 // Specific CSS for your home-page
+.notifications {
+  padding: 16px;
+  margin: 0 20px 40px 20px;
+  width: 350px;
+  border-radius: 16px;
+  background: #E3DEC1;
+  h2 {
+    color: $darker-green;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+  }
+}
+
+.plants-notifications {
+  display: flex;
+  gap: 10px;
+}
+.notifications-check-box {
+
+}
