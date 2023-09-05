@@ -1,30 +1,42 @@
 <div class="sky d-flex" style="color:#233622;">
 
-<div class="mt-4 ms-3" data-controller='weather'>
-<h1 id="city"> Lisbon</h1>
-<p id="date"><%= Time.now.strftime("%d september %y") %></p>
-<h2 id="degree">25º</h2>
+  <div class="mt-4 ms-3" data-controller='weather'>
+    <h1 id="city"> Lisbon</h1>
+    <p id="date"><%= Time.now.strftime("%d september %y") %></p>
+    <h2 id="degree">25º</h2>
+  </div>
+  <%= image_tag "sunn.svg", style:"margin-left: 75px; width:100px;margin-top: 50px;"%>
+  </div>
+
+  <div class="d-flex justify-content-evenly mb-5 mt-5">
+    <%= link_to new_division_path, class:"removelink" do %>
+    <div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
+  <% end %>
+
+  <%= link_to plants_path, class:"removelink" do %>
+    <div class="btn-home p-3"><h1>ADD</h1>  <h2>NEW PLANT</h2> <%= image_tag("Vector.svg", class: "img-btn")%></div>
+  <% end %>
+
 </div>
-<%= image_tag "sunn.svg", style:"margin-left: 75px; width:100px;margin-top: 50px;"%>
-</div>
 
-<div class="d-flex justify-content-evenly mb-5 mt-5">
-<%= link_to new_division_path, class:"removelink" do %>
-<div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
-<% end %>
-
-<%= link_to plants_path, class:"removelink" do %>
-  <div class="btn-home p-3"><h1>ADD</h1>  <h2>NEW PLANT</h2> <%= image_tag("Vector.svg", class: "img-btn")%></div>
-<% end %>
-
-</div>
-
-<div class=“”>
+<div class="notifications">
   <h2>Notifications</h2>
   <p>It’s <%= @today_weekday %>, these plants need love:</p>
   <div>
-    <% @plants_not_watered.each do |plant_division| %>
-      <p><%= plant_division.plant.name %></p>
+    <% if @plants_not_watered.any? %>
+    <div class="plants-notifications">
+      <% @plants_not_watered.each do |plant_division| %>
+        <%= image_tag (plant_division.plant.photo_url) %>
+        <div>
+          <p><%= plant_division.plant.name %></p>
+          <p><%= plant_division.division.name %></p>
+          <%= button_to "Water", waterings_path(plant_division_id: plant_division.id), method: :post %>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <h5>Good job, all your plants are watered :D</h5>
     <% end %>
   </div>
+
 </div>
