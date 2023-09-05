@@ -19,7 +19,7 @@
       <%= f.input :light_direction, as: :radio_buttons,
                 collection_wrapper_tag: 'div',
                 collection_wrapper_class: 'category-wrapper d-flex flex-column ',
-                item_wrapper_class: 'category-item mb-3',
+                item_wrapper_class: 'category-item dc ',
                 input_html: {class: 'category-selector'},
                 collection: Division::LIGHT_DIRECTIONS.keys %>
   <div class="d-flex justify-content-center">
