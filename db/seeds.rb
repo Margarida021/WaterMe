@@ -47,15 +47,6 @@ average_monday = WaterFrequencyWeekday.create(water_frequency: average, weekday:
 
 puts "Created waterfrequency"
 
-# LOOK FOR ALL PLANTS
-
-url = "https://perenual.com/api/species-list?page=1&key=#{ENV["PERENUAL_API"]}"
-
-url_open = URI.open(url).read
-
-all_plants = JSON.parse(url_open)["data"]
-
-# POPULATING DB WITH PLANTS FROM PERENUAL API
 def photo_null?(plant_photo)
   photo = ""
 
@@ -68,43 +59,31 @@ def photo_null?(plant_photo)
   photo
 end
 
-puts "generating new seeds"
-all_plants.first(25).each do |plant|
+flower_ids = [855, 728, 2193, 1908, 677, 2301, 2533, 2773, 2774, 334, 24, 355, 540, 653, 1011, 1218, 1519, 1530, 2035, 2961, 2528, 2529, 2531, 1847]
 
-  plant_photo = photo_null?(plant["default_image"])
+puts "Populating db with flowers and careguides"
 
-  new_plant = Plant.new(
-    name: plant["common_name"],
-    scientific_name: plant["scientific_name"][0],
-    description: "Beautiful #{plant["common_name"]} plant",
-    photo_url: plant_photo,
-    water_frequency: WaterFrequency.find_by(frequency: plant["watering"]),
-    light_level: plant["sunlight"][0],
-    perenual_id: plant["id"]
-  )
-
-  new_plant.save
-  puts "#{new_plant.name} created"
-end
-puts "seeds generated"
-# LOOK FOR AND UPDATE DESCRIPTION OF THE PLANT & CREATE CARE GUIDE
-
-plants = Plant.all
-
-puts "generating care guide"
-plants.each do |plant|
-
-  # Look description
-
-  perenual_id = plant.perenual_id
-
-  url_detail_plant = "https://perenual.com/api/species/details/#{perenual_id}?key=#{ENV["PERENUAL_API"]}"
+flower_ids.each do |id|
+  url_detail_plant = "https://perenual.com/api/species/details/#{id}?key=#{ENV["PERENUAL_API"]}"
 
   url_detail_plant_open = URI.open(url_detail_plant).read
 
   plant_data = JSON.parse(url_detail_plant_open)
 
-  plant.update(description: plant_data["description"])
+  plant_photo = photo_null?(plant_data["default_image"])
+
+  new_plant = Plant.new(
+    name: plant_data["common_name"].capitalize,
+    scientific_name: plant_data["scientific_name"][0].capitalize,
+    description: plant_data["description"],
+    photo_url: plant_photo,
+    water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
+    light_level: plant_data["sunlight"][0].capitalize,
+    perenual_id: plant_data["id"]
+  )
+
+  new_plant.save
+  puts "#{new_plant.name} created"
 
   # Create care guide and look for it
 
@@ -120,9 +99,76 @@ plants.each do |plant|
     pruning: plant_care_guide[2]["description"]
   )
 
-  care_guide.plant = plant
+  care_guide.plant = new_plant
 
-  care_guide.save!
-
+  care_guide.save
+  puts "#{new_plant.name} careguide created"
 end
-puts "care guide generated"
+
+puts "plants & careguides created"
+
+# LOOK FOR ALL PLANTS
+
+# url = "https://perenual.com/api/species-list?page=1&key=#{ENV["PERENUAL_API"]}"
+
+# url_open = URI.open(url).read
+
+# all_plants = JSON.parse(url_open)["data"]
+
+# POPULATING DB WITH PLANTS FROM PERENUAL API
+
+# puts "generating new seeds"
+# all_plants.first(25).each do |plant|
+#   plant_photo = photo_null?(plant["default_image"])
+
+#   new_plant = Plant.new(
+  #     name: plant["common_name"].capitalize,
+  #     scientific_name: plant["scientific_name"][0].capitalize,
+  #     description: "Beautiful #{plant["common_name"]} plant",
+#     photo_url: plant_photo,
+#     water_frequency: WaterFrequency.find_by(frequency: plant["watering"]),
+#     light_level: plant["sunlight"][0].capitalize,
+#     perenual_id: plant["id"]
+#   )
+
+#   new_plant.save
+#   puts "#{new_plant.name} created"
+# end
+# puts "seeds generated"
+# LOOK FOR AND UPDATE DESCRIPTION OF THE PLANT & CREATE CARE GUIDE
+
+# plants = Plant.all
+
+# puts "generating care guide"
+# plants.each do |plant|
+#   # Look description
+
+#   perenual_id = plant.perenual_id
+
+#   url_detail_plant = "https://perenual.com/api/species/details/#{perenual_id}?key=#{ENV["PERENUAL_API"]}"
+
+#   url_detail_plant_open = URI.open(url_detail_plant).read
+
+#   plant_data = JSON.parse(url_detail_plant_open)
+
+#   plant.update(description: plant_data["description"])
+
+#   # Create care guide and look for it
+
+#   url_care_guide_plant = plant_data["care-guides"]
+
+#   url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+
+#   plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
+
+#   care_guide = CareGuide.new(
+#     watering: plant_care_guide[0]["description"],
+#     sunlight: plant_care_guide[1]["description"],
+#     pruning: plant_care_guide[2]["description"]
+#   )
+
+#   care_guide.plant = plant
+
+#   care_guide.save!
+# end
+# puts "care guide generated"
