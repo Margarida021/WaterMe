@@ -20,23 +20,38 @@
 </div>
 
 <div class="notifications">
-  <h2>Notifications</h2>
-  <p>It’s <%= @today_weekday %>, these plants need love:</p>
+    <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
+    <p class="p-title">It's <%= @today_weekday %>, these plants need love:</p>
   <div>
     <% if @plants_not_watered.any? %>
-    <div class="plants-notifications">
       <% @plants_not_watered.each do |plant_division| %>
-        <%= image_tag (plant_division.plant.photo_url) %>
-        <div>
-          <p><%= plant_division.plant.name %></p>
-          <p><%= plant_division.division.name %></p>
-          <%= button_to "Water", waterings_path(plant_division_id: plant_division.id), method: :post %>
+        <div class="plants-notifications">
+          <%= image_tag (plant_division.plant.photo_url) %>
+          <div class="flex-grow-1">
+            <h6><%= plant_division.plant.name %></h6>
+            <p><i><%= plant_division.division.name %></i></p>
+          </div>
+            <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
+              <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i><p>Water</p>
+            <% end %>
         </div>
       <% end %>
-    </div>
     <% else %>
-      <h5>Good job, all your plants are watered :D</h5>
+      <h5>Good job, all your plants are watered!</h5>
     <% end %>
   </div>
+</div>
 
+<div class="notifications">
+  <h2>We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
+  <p class="p-title">something here?</p>
+  <% @plants_watered.each do |plant_division| %>
+    <div class="plants-notifications">
+      <%= image_tag (plant_division.plant.photo_url) %>
+        <div class="flex-grow-1">
+          <h6><%= plant_division.plant.name %></h6>
+          <p><i><%= plant_division.division.name %></i></p>
+        </div>
+    </div>
+  <% end %>
 </div>
