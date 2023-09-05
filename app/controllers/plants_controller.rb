@@ -120,7 +120,7 @@ class PlantsController < ApplicationController
       name: plant_data["common_name"].capitalize,
       scientific_name: plant_data["scientific_name"][0],
       description: plant_data["description"],
-      watering_freq: plant_data["watering"],
+      watering_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
       light_level: plant_data["sunlight"][0],
       photo_url: photo_null?(plant_data["default_image"])
     }
@@ -129,7 +129,6 @@ class PlantsController < ApplicationController
 
     # Create care guide and look for it
     careguide_create(plant_data["care-guides"], plant)
-
 
     plant
   end
@@ -148,13 +147,6 @@ class PlantsController < ApplicationController
     care_guide.plant = plant
 
     care_guide.save
-  end
-
-  def waterfreq_create
-    water_freq = WaterFrequency.create(frequency: plant_data["watering_general_benchmark"]["value"])
-
-    weekday_create 
-
   end
 
   def photo_null?(plant_photo)

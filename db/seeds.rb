@@ -70,7 +70,6 @@ end
 
 puts "generating new seeds"
 all_plants.first(25).each do |plant|
-
   plant_photo = photo_null?(plant["default_image"])
 
   new_plant = Plant.new(
@@ -123,6 +122,5 @@ plants.each do |plant|
   care_guide.plant = plant
 
   care_guide.save!
-
 end
 puts "care guide generated"
