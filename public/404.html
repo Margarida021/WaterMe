@@ -3,12 +3,18 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
+
+   .rails-default-error-page {
+    background-color: #F1F2E1;
     color: #2E2F30;
     text-align: center;
-    font-family: arial, sans-serif;
     margin: 0;
   }
 
@@ -19,37 +25,32 @@
   }
 
   .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
     padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
   .rails-default-error-page h1 {
     font-size: 100%;
-    color: #730E15;
+    color: #174A41;
     line-height: 1.5em;
+    font-family: 'Rubik', sans-serif;
+    font-size: 100px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .rails-default-error-page h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
   }
 
   .rails-default-error-page div.dialog > p {
     margin: 0 0 1em;
     padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
     color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
   }
   </style>
 </head>
@@ -57,11 +58,10 @@
 <body class="rails-default-error-page">
   <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <h1>404</h1>
+    <img src="cactus.svg">
+    <h3>Ops! It seems you've taken a wrong root!</h3>
+    <p>But don't leaf just yet! You can always head back to the homepage</p>
   </div>
 </body>
 </html>
