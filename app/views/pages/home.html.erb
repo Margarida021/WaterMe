@@ -1,11 +1,12 @@
 <div class="sky d-flex" style="color:#233622;">
 
-  <div class="mt-4 ms-3" data-controller='weather'>
+  <div class="mt-4 ms-3" data-controller='weather' data-weather-api-key-value="<%= ENV['WEATHERAPI'] %>">
     <h1 id="city"> Lisbon</h1>
     <p id="date"><%= Time.now.strftime("%d september %y") %></p>
     <h2 id="degree">25º</h2>
   </div>
   <%= image_tag "sunn.svg", style:"margin-left: 75px; width:100px;margin-top: 50px;"%>
+  <%= image_tag "clouds.svg", style:"position: absolute; right:23px; top:20px;"%>
   </div>
 
   <div class="d-flex justify-content-evenly mb-5 mt-5">
