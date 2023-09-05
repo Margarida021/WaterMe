@@ -7,7 +7,12 @@
   </div>
   <div class="row">
     <% plants = division.plants.to_a %>
-    <% if plants.size < 6 %>
+    <% if division.plants.present? == false %>
+      <div class="txt-no-divisons">
+        <h5 class="mt-5 mb-3">You don't have any plants in this room yet </h5>
+        <%= image_tag("vaso-de-planta.png", alt: "plant icon", class:"mb-5") %>
+      </div>
+    <% elsif plants.size < 6 %>
       <% plants.fill({ photo_url: "no-plants.svg"}, plants.size...6) %>
     <% end %>
     <% completed_columns = plants.each_slice(2).to_a %>
@@ -25,9 +30,6 @@
       <% else %>
         <% break %>
       <% end %>
-    <% end %>
-    <% if division.plants.present? == false %>
-      <h5 class="my-5">You don't have any plants in this room yet 🪴 </h5>
     <% end %>
   </div>
 </section>
