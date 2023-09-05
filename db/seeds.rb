@@ -73,12 +73,12 @@ all_plants.first(25).each do |plant|
   plant_photo = photo_null?(plant["default_image"])
 
   new_plant = Plant.new(
-    name: plant["common_name"],
-    scientific_name: plant["scientific_name"][0],
+    name: plant["common_name"].capitalize,
+    scientific_name: plant["scientific_name"][0].capitalize,
     description: "Beautiful #{plant["common_name"]} plant",
     photo_url: plant_photo,
     water_frequency: WaterFrequency.find_by(frequency: plant["watering"]),
-    light_level: plant["sunlight"][0],
+    light_level: plant["sunlight"][0].capitalize,
     perenual_id: plant["id"]
   )
 

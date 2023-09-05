@@ -120,8 +120,8 @@ class PlantsController < ApplicationController
       name: plant_data["common_name"].capitalize,
       scientific_name: plant_data["scientific_name"][0],
       description: plant_data["description"],
-      watering_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
-      light_level: plant_data["sunlight"][0],
+      water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
+      light_level: plant_data["sunlight"][0].capitalize,
       photo_url: photo_null?(plant_data["default_image"])
     }
 
