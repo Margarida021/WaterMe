@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "pages#landing"
-  get "home", to: "pages#home"
   get "onboarding", to: "pages#onboarding"
+  get "home", to: "pages#home"
 
   resources :divisions do
     resources :plant_divisions, only: [:new, :create]

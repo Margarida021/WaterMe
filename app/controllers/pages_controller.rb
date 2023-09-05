@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :landing
+  skip_before_action :authenticate_user!, only: [:landing, :onboarding]
+
 
   def home
     @today_weekday = Date.today.strftime('%A')
@@ -9,6 +10,9 @@ class PagesController < ApplicationController
   end
 
   def landing
+  end
+
+  def onboarding
   end
 
 end
