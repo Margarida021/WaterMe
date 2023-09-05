@@ -34,5 +34,13 @@
   font-weight: 600;
   color: $medium-dark-green;
   font-family: $body-font;
+}
 
+.txt-no-divisons {
+  color: $darker-green;
+  text-align: center;
+
+  img {
+    width: 50px;
+  }
 }
