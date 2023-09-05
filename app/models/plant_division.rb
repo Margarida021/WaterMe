@@ -2,7 +2,7 @@ class PlantDivision < ApplicationRecord
   belongs_to :plant
   belongs_to :division
   #has_many_attached :photos
-  has_many :waterings
+  has_many :waterings, dependent: :destroy
 
   validates :division_id, presence: true
 end
