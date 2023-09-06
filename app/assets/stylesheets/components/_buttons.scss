@@ -188,3 +188,11 @@
     font-size: 15px;
   }
 }
+
+.btn-trash{
+  all: unset;
+  background-image: url("icons/trash.svg");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+}

@@ -28,6 +28,7 @@
       <% else %>
         <section class="padding-all">
         <% end %>
+        <%= javascript_include_tag "delete_confirmation_dialog" %>
         <%= yield %>
         <% if action_name == 'home' || controller_name == 'plants' || controller_name == 'plant_divisions' || controller_name == 'divisions' && !['sessions', 'registrations', 'passwords'].include?(controller_name) %>
           <%= render "components/navburguer", status: :unprocessable_entity %>
