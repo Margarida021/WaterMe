@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Rubik:wght@700&display=swap" rel="stylesheet">
-  <style>
 
+  <style>
    .rails-default-error-page {
     background-color: #F1F2E1;
     color: #2E2F30;
@@ -21,7 +21,8 @@
   .rails-default-error-page div.dialog {
     width: 95%;
     max-width: 33em;
-    margin: 4em auto 0;
+    margin: 2em auto;
+    text-align: center;
   }
 
   .rails-default-error-page div.dialog > div {
@@ -56,15 +57,32 @@
   }
 
   .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
+    margin: 20px 0 30px 0;
     color: #666;
     font-family: 'Lato', sans-serif;
     font-size: 20px;
     font-weight: 400;
     color: #44664B;
   }
+
+  .homepage-a-link {
+    background-color: #174A41;
+    height: 50px;
+    width: 240px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #F5F5F5;
+    text-decoration: none;
+    position: fixed;
+    left: 72px;
+  }
   </style>
+
 </head>
 
 <body class="rails-default-error-page">
@@ -75,6 +93,7 @@
     <!-- <img src="leaves_group.svg" alt="leaves around frame" class="image-leaves"> -->
     <h3>Ops! It seems you've taken a wrong root!</h3>
     <p>But don't leaf just yet! You can always head back to the homepage</p>
+    <a href="https://www.appwater.me/home" class="homepage-a-link">Go back to Homepage</a>
   </div>
 </body>
 </html>
