@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  protect_from_forgery with: :null_session
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -11,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    home_path(current_user)
+    home_path
   end
 
   def default_url_options

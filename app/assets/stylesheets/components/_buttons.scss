@@ -61,6 +61,22 @@
   border: none;
 }
 
+.btn-carousel-start {
+  background-color: $darker-green;
+  color: $lighter-green;
+  height: 50px;
+  width: 140px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 16px 0;
+  border: none;
+}
+
 .btn-sign-in {
   background-color: $medium-light-green;
   color: $medium-dark-green;
@@ -189,6 +205,14 @@
   }
 }
 
+.btn-trash{
+  all: unset;
+  background-image: url("icons/trash.svg");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+}
+
 
 .button-notification {
   cursor: pointer;
@@ -199,14 +223,26 @@
   0% {
     transform: scale(1);
     box-shadow: 0 0 0 0 var(--bg-color-primary);
-  }
+    }
   50% {
     transform: scale(1.1);
     box-shadow: 0 0 0 15px rgba(244, 67, 54, 0);
-  }
+    }
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
-
+    }
   }
-}
+
+.btn-logout{
+  all: unset;
+  background-image: url("icons/sign-out.svg");
+  background-size: cover;
+  width: 30px;
+  height: 30px!important;
+ }
+
+form.delete-alertbox{
+  height: 30px!important;
+ }
+

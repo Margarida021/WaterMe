@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
-    // console.log("Hello")
+    console.log("Hello")
     let path = document.location.pathname
     if (path == '/plants')
     {
@@ -33,5 +33,7 @@ export default class extends Controller {
         document.querySelector(".active").classList.remove("active")
         menu.classList.add("active");
       }
-      }
-}}
+    }
+  }
+
+}
