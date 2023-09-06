@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="onboarding"
 export default class extends Controller {
   static targets = ["middleSlide", "btnStart", "btnNext", "btnBack"]
+
   connect() {
     this.btnBackTarget.disabled = true;
   }
