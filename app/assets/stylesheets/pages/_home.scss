@@ -10,6 +10,10 @@
     color: $darker-green;
   }
 
+  .h2-notifications {
+    margin-bottom: 15px;
+  }
+
   h5 {
     color: $darker-green;
     text-align: center;
@@ -47,4 +51,24 @@
   border-radius: 8px;
   padding-right: 10px;
   margin-bottom: 15px;
+  p {
+    margin: 0;
+  }
+}
+
+.flash-message {
+  position: relative;
+  background-color: $medium-light-green;
+  color: $lighter-green;
+  width: 350px;
+  padding: 10px;
+  justify-content: center;
+  display: flex;
+  margin: 0;
+  border-radius: 8px;
+  top: 25px;
+  left: 20px;
+  p {
+    margin: 0;
+  }
 }

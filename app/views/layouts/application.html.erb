@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
     <%= favicon_link_tag "favicon/favicon.png", rel: "icon", type: "image/png" %>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   </head>
 <% controller_name == "pages" && action_name == "landing"  ? "background-color: #174A41" : ""  %>
   <body style="<%= controller_name == "pages" && action_name == "landing"  ? "background-color: #174A41;" : ""  %>" <% if controller_name == "pages" && action_name == "landing" ? "body" : "bg-all" %><% end %> >
