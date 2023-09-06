@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between btn-onboard">
   <%= link_to "skip", user_session_path, class:"skip" %>
 </div>
-<div id="carousel" class="carousel slide bg-onboarding" data-bs-interval="false" style="height: 700px; top: -110px; padding-top:110px;">
+<div id="carousel" class="carousel slide bg-onboarding" data-bs-interval="false" data-bs-infinite="false" style="height: 700px; top: -110px; padding-top:110px;">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -33,6 +33,6 @@
   </div>
   <div class="d-flex justify-content-between align-items-center">
     <button class="btn-sign-in" data-bs-target="#carousel" data-bs-slide="prev">Back</button>
-    <button class="btn-next" data-bs-target="#carousel" data-bs-slide="next">Next</button>
+    <button class="btn-next" data-bs-target="#carousel" data-bs-slide="next" data-bs-wrap="false">Next</button>
   </div>
 </div>

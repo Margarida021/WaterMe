@@ -33,5 +33,19 @@ export default class extends Controller {
         document.querySelector(".active").classList.remove("active")
         menu.classList.add("active");
       }
-      }
-}}
+    }
+  }
+
+  onboarding() {
+    // Pegar ultimo slide do carrosel
+    // Adicionar evento no botão next
+    // mudar o botão para start ou para disable
+
+
+
+
+    // Pegar primeiro slide do carrosel
+    // Adicionar evento no botão back
+    // mudar o botão para disable
+  }
+}
