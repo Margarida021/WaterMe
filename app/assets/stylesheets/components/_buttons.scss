@@ -196,3 +196,24 @@
   width: 30px;
   height: 30px;
 }
+
+
+.button-notification {
+  cursor: pointer;
+  animation: pulsate 2s 3;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--bg-color-primary);
+    }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 15px rgba(244, 67, 54, 0);
+    }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+    }
+  }

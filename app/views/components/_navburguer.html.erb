@@ -14,18 +14,18 @@
     </div>
   </div>
   <div class="navburguer" id="navburger" data-controller="click">
-    <%= link_to image_tag("icons/user.svg", alt: "user icon", id:"user" ), divisions_path %>
+    <%= link_to image_tag("icons/user-fill.svg", alt: "user icon", id:"user" ), divisions_path %>
     <%= link_to image_tag("icons/search.svg", alt: "search icon", id:"search"), plants_path %>
     <div data-action="click->add-nav#revealContent">
       <%= image_tag("icons/add.svg", alt: "add icon", id:"menu") %>
     </div>
-    <%= link_to image_tag("icons/home.svg", alt: "home icon",id: "home"), home_path %>
 
     <% if PlantDivision.not_watered(current_user) && PlantDivision.not_watered(current_user).any? %>
-      <%= link_to image_tag("icons/bell_pin.svg", alt: "bell icon", id: "bell") %>
+      <%= link_to image_tag("icons/home-pin.svg", alt: "home icon",id: "home", class:"button-notification"), home_path %>
     <% else %>
-      <%= link_to image_tag("icons/bell.svg", alt: "bell icon", id: "bell") %>
+      <%= link_to image_tag("icons/home.svg", alt: "home icon", id: "home"), home_path %>
     <% end %>
 
+    <%= link_to image_tag("icons/sign-out.svg", alt: "sign out icon", id: "signout"), destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure you want to leave?  :('}  %>
   </div>
 </div>
