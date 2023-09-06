@@ -9,6 +9,12 @@
   <%= image_tag "clouds.svg", style:"position: absolute; right:23px; top:20px;"%>
   </div>
 
+  <% flash.each do |type, msg| %>
+    <div class="flash-message animate__animated animate__fadeIn">
+      <p><%= msg %></p>
+    </div>
+  <% end %>
+
   <div class="d-flex justify-content-evenly mb-5 mt-5">
     <%= link_to new_division_path, class:"removelink" do %>
     <div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
@@ -22,9 +28,9 @@
 
 <div class="notifications">
     <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
-    <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
   <div>
     <% if PlantDivision.not_watered(current_user).any? %>
+      <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
       <% PlantDivision.not_watered(current_user).each do |plant_division| %>
         <div class="plants-notifications">
           <%= image_tag (plant_division.plant.photo_url) %>
@@ -44,8 +50,7 @@
 </div>
 
 <div class="notifications">
-  <h2>We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
-  <p class="p-title">something here?</p>
+  <h2 class="h2-notifications">We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
   <% PlantDivision.watered(current_user).each do |plant_division| %>
     <div class="plants-notifications">
       <%= image_tag (plant_division.plant.photo_url) %>
