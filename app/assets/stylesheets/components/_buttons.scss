@@ -217,3 +217,16 @@
     box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
     }
   }
+
+.btn-logout{
+  all: unset;
+  background-image: url("icons/sign-out.svg");
+  background-size: cover;
+  width: 30px;
+  height: 30px!important;
+ }
+
+form.delete-alertbox{
+  height: 30px!important;
+ }
+
