@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
-    // console.log("Hello")
+    console.log("Hello")
     let path = document.location.pathname
     if (path == '/plants')
     {
@@ -36,16 +36,4 @@ export default class extends Controller {
     }
   }
 
-  onboarding() {
-    // Pegar ultimo slide do carrosel
-    // Adicionar evento no botão next
-    // mudar o botão para start ou para disable
-
-
-
-
-    // Pegar primeiro slide do carrosel
-    // Adicionar evento no botão back
-    // mudar o botão para disable
-  }
 }
