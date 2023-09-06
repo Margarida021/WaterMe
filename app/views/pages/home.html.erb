@@ -1,5 +1,4 @@
 <div class="sky d-flex" style="color:#233622;">
-
   <div class="mt-4 ms-3" data-controller='weather' data-weather-api-key-value="<%= ENV['WEATHERAPI'] %>">
     <h1 id="city"> Lisbon</h1>
     <p id="date"><%= Time.now.strftime("%d september %y") %></p>
@@ -19,13 +18,14 @@
     <%= link_to new_division_path, class:"removelink" do %>
     <div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
   <% end %>
-
   <%= link_to plants_path, class:"removelink" do %>
-    <div class="btn-home p-3"><h1>ADD</h1>  <h2>NEW PLANT</h2> <%= image_tag("Vector.svg", class: "img-btn")%></div>
+    <div class="btn-home p-3">
+      <h1>ADD</h1>
+  
+      <h2>NEW PLANT</h2>
+ <%= image_tag("Vector.svg", class: "img-btn")%></div>
   <% end %>
-
 </div>
-
 <div class="notifications">
     <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
   <div>
@@ -38,9 +38,10 @@
             <h6><%= plant_division.plant.name %></h6>
             <p><i><%= plant_division.division.name %></i></p>
           </div>
-            <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
-              <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i><p>Water</p>
-            <% end %>
+          <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
+            <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
+            <p>Water</p>
+          <% end %>
         </div>
       <% end %>
     <% else %>
@@ -48,16 +49,15 @@
     <% end %>
   </div>
 </div>
-
 <div class="notifications">
   <h2 class="h2-notifications">We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
   <% PlantDivision.watered(current_user).each do |plant_division| %>
     <div class="plants-notifications">
       <%= image_tag (plant_division.plant.photo_url) %>
-        <div class="flex-grow-1">
-          <h6><%= plant_division.plant.name %></h6>
-          <p><i><%= plant_division.division.name %></i></p>
-        </div>
+      <div class="flex-grow-1">
+        <h6><%= plant_division.plant.name %></h6>
+        <p><i><%= plant_division.division.name %></i></p>
+      </div>
     </div>
   <% end %>
 </div>
