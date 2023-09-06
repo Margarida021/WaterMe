@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-between btn-onboard">
   <%= link_to "skip", user_session_path, class:"skip" %>
 </div>
-<div id="carousel" class="carousel slide bg-onboarding" data-bs-interval="false" style="height: 700px; top: -110px; padding-top:110px;">
+<div id="carousel" class="carousel slide bg-onboarding" data-bs-interval="false" data-controller="onboarding" style="height: 700px; top: -110px; padding-top:110px;">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3" id="last"></button>
   </div>
   <div class="carousel-inner" style="height: 600px">
     <div class="carousel-item active">
@@ -15,7 +15,7 @@
         <p class="text">Organize your space according to the divisions in your home.</p>
       </div>
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item" data-onboarding-target="middleSlide">
       <%= image_tag("image-2-onboarding.svg", alt: "image onboarding", class:"img-onboarding")%>
       <div class="carousel-caption-txt d-md-block">
         <h5 class="tit">Add your <br/>
@@ -32,7 +32,8 @@
     </div>
   </div>
   <div class="d-flex justify-content-between align-items-center">
-    <button class="btn-sign-in" data-bs-target="#carousel" data-bs-slide="prev">Back</button>
-    <button class="btn-next" data-bs-target="#carousel" data-bs-slide="next">Next</button>
+    <button class="btn-sign-in" data-onboarding-target="btnBack" data-bs-target="#carousel" data-bs-slide="prev">Back</button>
+    <button class="btn-next" data-action="click->onboarding#fire" data-onboarding-target="btnNext" data-bs-target="#carousel" data-bs-slide="next" data-bs-wrap="false">Next</button>
+    <button onclick = "window.location.href='<%= home_path %>';" class="d-none btn-carousel-start" data-onboarding-target="btnStart">Start</button>
   </div>
 </div>

@@ -1,8 +1,12 @@
 <div class="plant-image">
   <%= image_tag plant_division.photo_url, class:"plant-image"%>
   <div class="plant-division-icons-group">
-    <%= link_to image_tag("icons/arrow-circle-left.svg", class:"plant-division-icon-back"), division_path(division) %>
+
+    <%= link_to image_tag("icons/arrow-bg.svg", class:"plant-division-icon-back"), division_path(division) %>
+
+    <%= link_to image_tag("icons/trash-bg.svg", class:"plant-division-icon-trash"), plant_division_path(@plant_division.id), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
     <%= button_to "",plant_division_path(@plant_division.id), class:"btn-trash", method: :delete, form_class: 'delete-alertbox'%>
+
 
   </div>
 </div>
