@@ -38,5 +38,28 @@
       <h5>Good job, all your plants are watered :D</h5>
     <% end %>
   </div>
+</div>
 
+<div class="notifications">
+
+  <h2>Tips for your plants :)</h2>
+  <p>The plant</p>
+
+  <div>
+    <% if @plants_placed_wrong.any? %>
+      <div class="plants-notifications">
+        <% @plants_placed_wrong.each do |plant_division| %>
+          <%= image_tag (plant_division.plant.photo_url) %>
+          <div>
+            <p><%= plant_division.plant.name %></p>
+            <p><%= plant_division.division.name %></p>
+            <p>This plant is not well placed... Consider to move it to a Division with <%= plant_division.plant.light_level %></p>
+            <%= button_to "Change Division", waterings_path(plant_division_id: plant_division.id), method: :post %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+        <h5>Good job, all your plants are well placed :D</h5>
+    <% end %>
+  </div>
 </div>

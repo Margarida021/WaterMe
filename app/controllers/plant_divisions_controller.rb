@@ -14,12 +14,17 @@ class PlantDivisionsController < ApplicationController
   def create
     @plant_division = PlantDivision.new(plant_division_params)
 
+
     if params[:plant_id]
       @plant = Plant.find(params[:plant_id])
       @plant_division.plant = @plant
     else
       @division = Division.find(params[:division_id])
       @plant_division.division = @division
+    end
+
+    if @plant_division.division.light_direction != @plant_division.plant.light_level
+      @warning = "The division's light direction doesn't match the plant's light needs. Consider to move your plant to another division"
     end
 
     if @plant_division.save

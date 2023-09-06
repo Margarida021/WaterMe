@@ -51,4 +51,10 @@
 <% end %>
 
 <% end%>
+
+  <% if @warning.present? %>
+    <div class="alert alert-warning">
+      <%= @warning %>
+    </div>
+  <% end %>
 </div>

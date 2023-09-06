@@ -20,7 +20,7 @@ puts "User created"
 # CREATE 2 DIVISIONS
 puts "Creating division"
 Division.create(name: "Mi Baranda", category: 'Balcony', light_direction: 'Full sun', user_id: User.last)
-Division.create(name: "Mi Cuarto", category: 'Bedroom', light_direction: 'Shade', user_id: User.last)
+Division.create(name: "Mi Cuarto", category: 'Bedroom', light_direction: 'Part shade', user_id: User.last)
 puts "Division created"
 
 # CREATE 3 WATER FREQUENCIES
@@ -59,6 +59,19 @@ def photo_null?(plant_photo)
   photo
 end
 
+def check_sunlight(plant_light)
+  num = rand
+  light = ""
+  if plant_light == "Part sun/part shade" && num < 0.5
+    light = "Part sun"
+  elsif plant_light == "Part sun/part shade" && num >= 0.5
+    light = "Part shade"
+  else
+    light = plant_light
+  end
+  light
+end
+
 flower_ids = [855, 728, 2193, 1908, 677, 2301, 2533, 2773, 2774, 334, 24, 355, 540, 653, 1011, 1218, 1519, 1530, 2035, 2961, 2528, 2529, 2531, 1847]
 
 puts "Populating db with flowers and careguides"
@@ -72,13 +85,15 @@ flower_ids.each do |id|
 
   plant_photo = photo_null?(plant_data["default_image"])
 
+  plant_light = check_sunlight(plant_data["sunlight"][0].capitalize)
+
   new_plant = Plant.new(
     name: plant_data["common_name"].capitalize,
     scientific_name: plant_data["scientific_name"][0].capitalize,
     description: plant_data["description"],
     photo_url: plant_photo,
     water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
-    light_level: plant_data["sunlight"][0].capitalize,
+    light_level: plant_light,
     perenual_id: plant_data["id"]
   )
 
