@@ -19,12 +19,19 @@
               <% end %>
 
             <% else %>
-              <%= link_to new_plant_plant_division_path(plant[:id]) do %>
-                <i class="fa-solid fa-plus icon-link"></i>
+              <% if current_user.divisions.empty? %>
+                <%= link_to new_division_path do %>
+                  <i class="fa-solid fa-plus icon-link"></i>
+                <% end %>
+              <% else %>
+                <%= link_to new_plant_plant_division_path(plant[:id]) do %>
+                  <i class="fa-solid fa-plus icon-link"></i>
+                <% end %>
               <% end %>
               <%= link_to plant_path(plant[:id]) do %>
                 <i class="fa-solid fa-ellipsis icon-link"></i>
               <% end %>
+
             <% end %>
 
           </div>
