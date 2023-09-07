@@ -14,7 +14,6 @@ class PlantDivisionsController < ApplicationController
   def create
     @plant_division = PlantDivision.new(plant_division_params)
 
-
     if params[:plant_id]
       @plant = Plant.find(params[:plant_id])
       @plant_division.plant = @plant

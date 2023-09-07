@@ -26,6 +26,7 @@
  <%= image_tag("Vector.svg", class: "img-btn")%></div>
   <% end %>
 </div>
+
 <div class="notifications">
     <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
   <div>
@@ -65,23 +66,21 @@
 
 <div class="notifications">
 
-  <h2>Tips for your plants :)</h2>
+  <h2 class="h2-notifications">Tips for your plants :)</h2>
   <p>These plants are not well placed... Move them so you can have beautiful plants!</p>
 
   <div>
     <% if @plants_placed_wrong.any? %>
       <div class="plants-notifications">
-        <div class="d-flex flex-column">
-          <% @plants_placed_wrong.each do |plant_division| %>
-            <%= image_tag (plant_division.plant.photo_url) %>
-            <div>
-              <p><%= plant_division.plant.name %></p>
-              <p><%= plant_division.division.name %></p>
-              <p><strong>Change to a room with <%= plant_division.plant.light_level %></strong></p>
-              <%= button_to "Change Division", waterings_path(plant_division_id: plant_division.id), method: :post %>
-            </div>
-          <% end %>
-        </div>
+        <% @plants_placed_wrong.each do |plant_division| %>
+          <%= image_tag (plant_division.plant.photo_url) %>
+          <div class="flex-grow-1">
+            <p><%= plant_division.plant.name %></p>
+            <p><%= plant_division.division.name %></p>
+            <p><strong>Change to a room with <%= plant_division.plant.light_level %></strong></p>
+          </div>
+          <%= button_to "Change", edit_plant_division_path(plant_division.id), method: :post, class:"btn-waterings" %>
+        <% end %>
       </div>
     <% else %>
         <h5>Good job, all your plants are well placed :D</h5>
