@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["options", "background"];
+  static targets = ["options", "background", "createDivisionConfirmLink"];
   static values = {
     plantLightLevel: String,
-    divisionLightDirection: String
+    divisionLightDirection: String,
+    cancelUrl: String
   }
   static currentActiveCard = null;
 
@@ -35,14 +36,23 @@ export default class extends Controller {
     };
   }
 
-  missing () {
+  missing (event) {
+    event.preventDefault()
     Swal.fire({
       icon: 'warning',
       title: 'No Divisions',
       text: `Want to create a division?`,
       confirmButtonColor: '#81A682',
-      confirmButtonText: 'Yes'
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      showCancelButton: true
+    })
+    .then((action)=> {
+      if (action.isConfirmed) {
+        window.location = this.createDivisionConfirmLinkTarget.href
+      }
     });
+
   }
 
   disconnect() {
