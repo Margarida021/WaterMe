@@ -16,7 +16,7 @@
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
       <% end %>
     <% end %>
-    <p class="p-subtitle-two">or search through photo.</p>
+    <p class="p-subtitle-two">or search through photo</p>
     <%= form_with(url: plant_rec_path , method: :post, class: "ff", multipart: true) do |form| %>
       <%= form.file_field :photo,
         value: params[:photo],
