@@ -1,32 +1,28 @@
 <%= image_tag("leaves.svg", class:"image-leaves") %>
 <div class="container new-divisions-container" style="marginLeft:20;marginRight:20;color:#233622;">
-
   <div class="new-divisions-details-top">
     <h2>Pick a divison</h2>
     <p class="p-subtitle">You can change the specifications later</p>
   </div>
-
-
-<div data-controller='dividionphoto'>
-  <%= simple_form_for @division, data: {dividionphoto_target: "form"} do |f| %>
-    <%= f.input :name, label: 'Give a name to your division', hint: 'i.e: "Mom\'s room"' %>
+  <div data-controller='dividionphoto'>
+    <%= simple_form_for @division, data: {dividionphoto_target: "form"} do |f| %>
+      <%= f.input :name, label: 'Give a name to your division', hint: 'i.e: "Mom\'s room"' %>
       <%= f.input :category, as: :radio_buttons,
-                collection_wrapper_tag: 'div',
-                collection_wrapper_class: 'category-wrapper d-flex flex-column ',
-                item_wrapper_class: 'category-item mb-3 lc',
-                input_html: {class: 'category-selector' },
-                collection: Division::CATEGORIES
-                %>
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+                  item_wrapper_class: 'category-item mb-3 lc',
+                  input_html: {class: 'category-selector' },
+                  collection: Division::CATEGORIES
+                  %>
       <%= f.input :light_direction, as: :radio_buttons,
-                collection_wrapper_tag: 'div',
-                collection_wrapper_class: 'category-wrapper d-flex flex-column ',
-                item_wrapper_class: 'category-item  dc ',
-                input_html: {class: 'borda category-selector '},
-                collection: Division::LIGHT_DIRECTIONS.keys %>
-  <div class="d-flex justify-content-center">
-    <%= f.button :submit , class: "btn btn-create-division"%>
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+                  item_wrapper_class: 'category-item  dc img-new-division',
+                  input_html: {class: 'borda category-selector '},
+                  collection: Division::LIGHT_DIRECTIONS.keys %>
+      <div class="d-flex justify-content-center">
+        <%= f.button :submit , class: "btn btn-create-division"%>
+      </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-
 </div>
