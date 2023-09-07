@@ -3,6 +3,7 @@ class DivisionsController < ApplicationController
 
   def index
     @divisions = Division.all
+    # @divisions = current_user.divisions
   end
 
   def show
@@ -23,7 +24,6 @@ class DivisionsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
