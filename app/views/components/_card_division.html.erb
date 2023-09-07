@@ -9,7 +9,7 @@
     <% plants = division.plants.to_a %>
     <% if division.plants.present? == false %>
       <div class="txt-no-divisons">
-        <h5 class="mt-5 mb-3">You don't have any plants in this room yet </h5>
+        <h5 class="mt-3 mb-3">You don't have any plants in this room yet </h5>
         <%= image_tag("vaso-de-planta.png", alt: "plant icon", class:"mb-5") %>
       </div>
     <% elsif plants.size < 6 %>

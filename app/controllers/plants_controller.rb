@@ -93,7 +93,7 @@ class PlantsController < ApplicationController
 
       # This have first 1 for simplicity (Im creating a hash first because there could be a better way to do this without create plants at first)
 
-      search_results = JSON.parse(url_open)["data"].first(1)
+      search_results = JSON.parse(url_open)["data"].first(3)
 
       search_results.each do |result|
         plant_name = result["common_name"].capitalize

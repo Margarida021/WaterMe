@@ -14,7 +14,7 @@ puts "DataBase Reseted"
 
 # CREATE AN USER
 puts "Creating user"
-User.create(name: "Armindo", email: "admin@lewagon.pt", password: "123456")
+User.create(name: "Mags", email: "admin@lewagon.pt", password: "123456")
 puts "User created"
 
 # CREATE 2 DIVISIONS
@@ -35,8 +35,12 @@ saturday = Weekday.create(day: "Saturday")
 
 frequent = WaterFrequency.create(frequency: "Frequent")
 frequent_monday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: monday)
+frequent_tuesday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: tuesday)
 frequent_wednesday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: wednesday)
+frequent_thursday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: thursday)
 frequent_friday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: friday)
+frequent_saturday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: saturday)
+frequent_sunday = WaterFrequencyWeekday.create(water_frequency: frequent, weekday: sunday)
 
 moderate = WaterFrequency.create(frequency: "Moderate")
 moderate_monday = WaterFrequencyWeekday.create(water_frequency: moderate, weekday: monday)

@@ -1,3 +1,4 @@
+<%= image_tag("leaves.svg", class:"image-leaves") %>
 <div class="new-plant-division">
   <%= link_to image_tag("icons/arrow-circle-left.svg"), plants_path %>
   <% if @plant %>
@@ -10,7 +11,7 @@
             collection_wrapper_tag: 'div',
             collection_wrapper_class: 'category-wrapper',
             item_wrapper_class: 'category-item mb-3 lc',
-            input_html: {class: 'category-selector' },
+            input_html: {class: 'category-selector borda + label' },
             collection: Division.all%>
 
   <%= simple_fields_for :water do |o| %>
@@ -18,7 +19,7 @@
     collection_wrapper_tag: 'div',
             collection_wrapper_class: 'wrap-days',
             item_wrapper_class: 'category-item days mb-3 lc',
-            input_html: {class: 'category-selector' }
+            input_html: {class: 'category-selector borda + label' }
     %>
   <% end %>
 
