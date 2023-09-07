@@ -5,5 +5,4 @@ class Plant < ApplicationRecord
   belongs_to :water_frequency
 
   validates :name, :scientific_name, :description, :photo_url, presence: true
-  # validates :watering_freq, :light_level, presence: true
 end

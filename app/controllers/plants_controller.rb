@@ -121,7 +121,7 @@ class PlantsController < ApplicationController
       scientific_name: plant_data["scientific_name"][0],
       description: plant_data["description"],
       water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
-      light_level: plant_data["sunlight"][0].capitalize,
+      light_level: check_sunlight(plant_data["sunlight"][0].capitalize),
       photo_url: photo_null?(plant_data["default_image"])
     }
 
@@ -159,5 +159,18 @@ class PlantsController < ApplicationController
     end
 
     photo
+  end
+
+  def check_sunlight(plant_light)
+    num = rand
+    light = ""
+    if plant_light == "Part sun/part shade" && num < 0.5
+      light = "Part sun"
+    elsif plant_light == "Part sun/part shade" && num >= 0.5
+      light = "Part shade"
+    else
+      light = plant_light
+    end
+    light
   end
 end

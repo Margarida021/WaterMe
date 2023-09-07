@@ -1,55 +1,68 @@
 <%= image_tag("leaves.svg", class:"image-leaves") %>
 <div class="new-plant-division">
   <%= link_to image_tag("icons/arrow-circle-left.svg"), plants_path %>
-  <% if @plant %>
-  <div class="new-plant-division-top-details">
-    <h2>Select one of yours divisions</h2>
-    <p class="p-subtitle">Add the plant to one of yours divisions</p>
-  </div>
-  <%= simple_form_for [@plant, @plant_division] do |f| %>
-  <%= f.association :division, as: :radio_buttons,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            item_wrapper_class: 'category-item mb-3 lc',
-            input_html: {class: 'category-selector borda + label' },
-            collection: Division.all%>
+    <% if @plant %>
+      <div class="new-plant-division-top-details">
+        <h2>Select one of yours divisions</h2>
+        <p class="p-subtitle">Add the plant to one of yours divisions</p>
+      </div>
 
-  <%= simple_fields_for :water do |o| %>
-    <%= o.input :last_watered_day, collection: Weekday.all, as: :radio_buttons, label_method: ->(weekday) { weekday.day[0..2] }, value_method: :day, include_blank: false,
-    collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'wrap-days',
-            item_wrapper_class: 'category-item days mb-3 lc',
-            input_html: {class: 'category-selector borda + label' }
-    %>
-  <% end %>
+      <%= simple_form_for [@plant, @plant_division] do |f| %>
+        <fieldset class="mb-3 radio_buttons required plant_division_division">
+          <legend class="col-form-label pt-0">Division <abbr title="required">*</abbr></legend>
+          <div class="category-wrapper">
+            <input type="hidden" name="plant_division[division_id]" value="" autocomplete="off">
+            <% current_user.divisions.each do |division| %>
+              <div class="category-item mb-3 lc">
+                <input class="form-check-input radio_buttons required category-selector borda + label"
+                        data-controller="select-plant"
+                        data-action="change->select-plant#warning"
+                        data-select-plant-plant-light-level-value="<%= @plant.light_level %>"
+                        data-select-plant-division-light-direction-value="<%= division.light_direction %>"
+                        type="radio"
+                        value="<%= division.id %>"
+                        name="plant_division[division_id]"
+                        id="plant_division_division_id_<%= division.id %>">
+                <label class="form-check-label collection_radio_buttons" for="plant_division_division_id_<%= division.id %>"><%= division.name %></label>
+              </div>
+            <% end %>
+          </div>
+        </fieldset>
 
-  <div class="d-flex justify-content-center mb-5">
-    <%= f.button :submit , class: "btn btn-create-plant-division"%>
-  </div>
-  <% end %>
+      <%= simple_fields_for :water do |o| %>
+        <%= o.input :last_watered_day, collection: Weekday.all, as: :radio_buttons, label_method: ->(weekday) { weekday.day[0..2] }, value_method: :day, include_blank: false,
+        collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'wrap-days',
+                item_wrapper_class: 'category-item days mb-3 lc',
+                input_html: {class: 'category-selector borda + label' }
+        %>
+      <% end %>
 
+      <div class="d-flex justify-content-center mb-5">
+        <%= f.button :submit , class: "btn btn-create-plant-division"%>
+      </div>
+    <% end %>
   <% else %>
-  <div class="new-plant-division-top-details">
-    <h1>Pick one Plant</h1>
-    <h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
-  </div>
-<div data-controller='plantphotoform'>
-<%= simple_form_for [@division, @plant_division] do |f| %>
+    <div class="new-plant-division-top-details">
+      <h1>Pick one Plant</h1>
+      <h3 class="fs-6 text-muted fw-lighter">Add the plant to one of yours divisions</h3>
+    </div>
+    <div data-controller='plantphotoform'>
+      <%= simple_form_for [@division, @plant_division] do |f| %>
+        <%= f.association :plant, as: :radio_buttons,
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper d-flex flex-column ',
+                  item_wrapper_class: 'category-item mb-3 lc',
+                  input_html: {
+                    class: 'category-selector'
+                  },
+                  collection: Plant.all.first(5),
+                  label:"Pick a plant"%>
 
-
-  <%= f.association :plant, as: :radio_buttons,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper d-flex flex-column ',
-            item_wrapper_class: 'category-item mb-3 lc',
-            input_html: {class: 'category-selector' },
-            collection: Plant.all.first(5),
-            label:"Pick a plant"%>
-
-<div class="d-flex justify-content-center mb-5">
-<%= f.button :submit, "Add the plant", class: "btn btn-sign-in"%>
-</div>
-</div>
-<% end %>
-
-<% end%>
+        <div class="d-flex justify-content-center mb-5">
+          <%= f.button :submit, "Add the plant", class: "btn btn-sign-in", id: "add-plant-button"%>
+        </div>
+      </div>
+    <% end %>
+  <% end%>
 </div>

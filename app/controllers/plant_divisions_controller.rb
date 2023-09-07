@@ -21,6 +21,10 @@ class PlantDivisionsController < ApplicationController
       @plant_division.division = @division
     end
 
+    if @plant_division.division.light_direction != @plant_division.plant.light_level
+      @warning = "The division's light direction doesn't match the plant's light needs. Consider to move your plant to another division"
+    end
+
     if @plant_division.save
       if Date.today.strftime('%A') == params[:water][:last_watered_day]
         watered_day = Date.today
