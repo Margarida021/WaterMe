@@ -17,6 +17,7 @@
   h5 {
     color: $darker-green;
     text-align: center;
+    margin: 0;
   }
 
   h6 {
@@ -53,6 +54,46 @@
   margin-bottom: 15px;
   p {
     margin: 0;
+  }
+}
+
+.tip-notifications {
+  padding: 16px;
+  margin: 0 20px 40px 20px;
+  width: 350px;
+
+  h2 {
+    color: $darker-green;
+    text-align: center;
+  }
+
+  .h2-notifications {
+    margin-bottom: 15px;
+  }
+  h6 {
+    color: $medium-dark-green;
+    text-align: center;
+    margin: 0;
+  }
+
+  h5 {
+    color: $darker-green;
+    margin: 0;
+  }
+  p {
+    color: $medium-dark-green;
+    margin: 0;
+  }
+}
+
+.tip-details {
+  margin-top: 20px;
+  border: solid 1px $medium-green;
+  border-radius: 8px;
+  padding: 15px;
+  .p-hint {
+    font-weight: bold!important;
+    margin-top: 10px;
   }
 }
 

@@ -1,3 +1,4 @@
+<%# Weather %>
 <div class="sky d-flex" style="color:#233622;">
   <div class="mt-4 ms-3" data-controller='weather' data-weather-api-key-value="<%= ENV['WEATHERAPI'] %>">
     <h1 id="city"> Lisbon</h1>
@@ -6,120 +7,94 @@
   </div>
   <%= image_tag "sunn.svg", style:"margin-left: 75px; width:100px;margin-top: 50px;"%>
   <%= image_tag "clouds.svg", style:"position: absolute; right:23px; top:20px;"%>
+</div>
+<%# Notice %>
+<% flash.each do |type, msg| %>
+  <div class="flash-message animate__animated animate__fadeIn">
+    <p><%= msg %></p>
   </div>
-
-  <% flash.each do |type, msg| %>
-    <div class="flash-message animate__animated animate__fadeIn">
-      <p><%= msg %></p>
-    </div>
-  <% end %>
-
-  <div class="notifications top-notification">
-      <% if PlantDivision.not_watered(current_user).any? %>
-        <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
-      <div>
-        <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
-        <% PlantDivision.not_watered(current_user).each do |plant_division| %>
-          <div class="plants-notifications">
-            <%= image_tag (plant_division.plant.photo_url) %>
-            <div class="flex-grow-1">
-              <h6><%= plant_division.plant.name %></h6>
-              <p><i><%= plant_division.division.name %></i></p>
-            </div>
-            <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
-              <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
-              <p>Water</p>
-            <% end %>
-          </div>
+<% end %>
+<%# Needing Water Notification %>
+<div class="notifications top-notification">
+  <% if PlantDivision.not_watered(current_user).any? %>
+    <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
+  <div>
+    <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
+    <% PlantDivision.not_watered(current_user).each do |plant_division| %>
+      <div class="plants-notifications">
+        <%= image_tag (plant_division.plant.photo_url) %>
+        <div class="flex-grow-1">
+          <h6><%= plant_division.plant.name %></h6>
+          <p><%= plant_division.division.name %></p>
+        </div>
+        <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
+          <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
+          <p>Water</p>
         <% end %>
-      <% else %>
-        <h5>Good job, all your plants are watered!</h5>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-
+  <% else %>
+    <h5>Good job, all your plants are watered!</h5>
+  <% end %>
+</div>
+<%# Add Icons %>
 <div class="d-flex justify-content-evenly mb-5 mt-5">
   <%= link_to new_division_path, class:"removelink" do %>
-    <div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
+    <div class="btn-home p-3">
+      <h1>ADD</h1>
+      <h2>NEW DIVISION</h2>
+      <%= image_tag("house.svg", class: "img-btn-h")%>
+    </div>
   <% end %>
   <%= link_to plants_path, class:"removelink" do %>
     <div class="btn-home p-3">
       <h1>ADD</h1>
-
       <h2>NEW PLANT</h2>
- <%= image_tag("Vector.svg", class: "img-btn")%></div>
-  <% end %>
-</div>
-
-<div class="notifications">
-    <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
-  <div>
-    <% if PlantDivision.not_watered(current_user).any? %>
-      <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
-      <% PlantDivision.not_watered(current_user).each do |plant_division| %>
-        <div class="plants-notifications">
-          <%= image_tag (plant_division.plant.photo_url) %>
-          <div class="flex-grow-1">
-            <h6><%= plant_division.plant.name %></h6>
-            <p><i><%= plant_division.division.name %></i></p>
-          </div>
-          <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
-            <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
-            <p>Water</p>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <h5>Good job, all your plants are watered!</h5>
-    <% end %>
-  </div>
-</div>
-  <div class="btn-home p-3">
-    <h1>ADD</h1>
-    <h2>NEW PLANT</h2>
-    <%= image_tag("Vector.svg", class: "img-btn")%></div>
-  <% end %>
-</div>
-
-<% if PlantDivision.watered(current_user).any? %>
-
-<div class="notifications">
-  <h2 class="h2-notifications">We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
-  <% PlantDivision.watered(current_user).each do |plant_division| %>
-    <div class="plants-notifications">
-      <%= image_tag (plant_division.plant.photo_url) %>
-      <div class="flex-grow-1">
-        <h6><%= plant_division.plant.name %></h6>
-        <p><i><%= plant_division.division.name %></i></p>
-      </div>
+      <%= image_tag("Vector.svg", class: "img-btn")%>
     </div>
   <% end %>
-  </div>
 </div>
-
-
-<div class="notifications">
-
-  <h2 class="h2-notifications">Tips for your plants :)</h2>
-  <p>These plants are not well placed... Move them so you can have beautiful plants!</p>
-
+<%# All Watered Notifications %>
+<% if PlantDivision.watered(current_user).any? %>
+  <div class="notifications">
+    <h2 class="h2-notifications">We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
+    <% PlantDivision.watered(current_user).each do |plant_division| %>
+      <div class="plants-notifications">
+        <%= image_tag (plant_division.plant.photo_url) %>
+        <div class="flex-grow-1">
+          <h6><%= plant_division.plant.name %></h6>
+          <p><%= plant_division.division.name %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<%# Tips Notifications %>
+<div class="tip-notifications">
+  <h2 class="h2-notifications">Tips for your plants <i class="fa-solid fa-leaf"></i></h2>
+  <h6>These plants are not well placed...<br>Move them so you can have beautiful and strong plants!</h6>
   <div>
     <% if @plants_placed_wrong.any? %>
-      <div class="plants-notifications">
+
         <% @plants_placed_wrong.each do |plant_division| %>
-          <%= image_tag (plant_division.plant.photo_url) %>
-          <div class="flex-grow-1">
-            <p><%= plant_division.plant.name %></p>
-            <p><%= plant_division.division.name %></p>
-            <p><strong>Change to a room with <%= plant_division.plant.light_level %></strong></p>
+          <div class="tip-details">
+            <div class="d-flex gap-1">
+              <h5><%= plant_division.plant.name %></h5>
+              <p>( <%= plant_division.division.name %> )</p>
+            </div>
+
+            <p class="p-hint">Hint: Change to a room with <%= plant_division.plant.light_level %></p>
+
+            <div class="d-flex justify-content-end">
+              <%= button_to "Change", edit_plant_division_path(plant_division.id), method: :post, class:"btn-tips" %>
+            </div>
+
           </div>
-          <%= button_to "Change", edit_plant_division_path(plant_division.id), method: :post, class:"btn-waterings" %>
         <% end %>
-      </div>
+
     <% else %>
-        <h5>Good job, all your plants are well placed :D</h5>
+      <h5>Good job, all your plants are well placed <i class="fa-regular fa-thumbs-up"></i></h5>
     <% end %>
   </div>
 </div>
-
-<% end %>

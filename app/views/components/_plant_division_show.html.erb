@@ -4,6 +4,7 @@
 
     <%= link_to image_tag("icons/arrow-bg.svg", class:"plant-division-icon-back"), division_path(division) %>
 
+
     <%= button_to image_tag("icons/trash-bg.svg", class:"plant-division-icon-trash"),plant_division_path(@plant_division.id), class:"btn-trash", method: :delete, form_class: 'delete-alertbox'%>
 
 
@@ -13,8 +14,9 @@
 <div class="show-page-plant-container">
   <div class="cards-explain-plant">
     <div class="plant-details">
+
       <h2><%= plant_division.name %></h2>
-      <p><%= plant_division.scientific_name %></p>
+      <p class="sci-name"><%= plant_division.scientific_name %></p>
       <div class="show-page-plants-mini-cards">
         <div class="plant-attributes-cards">
           <%= image_tag ("icons/humidity.svg"), class:"plant-attributes" %>

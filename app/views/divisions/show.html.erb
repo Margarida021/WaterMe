@@ -18,6 +18,7 @@
           <div class="division-details-text">
             <h5><%= link_to plant_division.plant.name, plant_division_path(plant_division), class:"plant-name" %></h5>
             <p class="plant-scentific-name"><%= plant_division.plant.scientific_name %></p>
+            <%= link_to "Move plant", edit_plant_division_path(plant_division), class:"pt-2" %>
           </div>
         </div>
         <% end %>

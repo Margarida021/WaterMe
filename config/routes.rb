@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "home", to: "pages#home"
 
   resources :divisions do
+
     resources :plant_divisions, only: [:new, :create, :edit]
   end
 
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
 
   post "plant_rec", to: "plants#api"
 
+
   resources :plant_divisions, only: [:show, :destroy, :edit]
+
   resources :waterings, only: [:create]
 end
