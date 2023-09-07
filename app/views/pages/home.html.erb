@@ -24,7 +24,7 @@
             <%= image_tag (plant_division.plant.photo_url) %>
             <div class="flex-grow-1">
               <h6><%= plant_division.plant.name %></h6>
-              <p><i><%= plant_division.division.name %></i></p>
+              <p><%= plant_division.division.name %></p>
             </div>
             <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
               <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
@@ -58,7 +58,7 @@
       <%= image_tag (plant_division.plant.photo_url) %>
       <div class="flex-grow-1">
         <h6><%= plant_division.plant.name %></h6>
-        <p><i><%= plant_division.division.name %></i></p>
+        <p><%= plant_division.division.name %></p>
       </div>
     </div>
   <% end %>
