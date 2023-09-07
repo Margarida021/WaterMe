@@ -14,6 +14,16 @@
     font-weight: 400;
     font-size: 20px;
   }
+
+  .p-tips {
+    text-align: center;
+    color: $medium-green;
+    font-weight: 400;
+    font-size: 18px;
+    border: 1px solid $medium-green;
+    border-radius: 8px;
+    padding: 16px;
+  }
 }
 
 .form-search-plants {
