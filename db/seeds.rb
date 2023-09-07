@@ -14,7 +14,7 @@ puts "DataBase Reseted"
 
 # CREATE AN USER
 puts "Creating user"
-User.create(name: "Armindo", email: "admin@lewagon.pt", password: "123456")
+User.create(name: "Mags", email: "admin@lewagon.pt", password: "123456")
 puts "User created"
 
 # CREATE 2 DIVISIONS
