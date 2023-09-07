@@ -73,7 +73,6 @@
 <%# Tips Notifications %>
 <div class="tip-notifications">
   <h2 class="h2-notifications">Tips for your plants <i class="fa-solid fa-leaf"></i></h2>
-  <h6>These plants are not well placed...<br>Move them so you can have beautiful and strong plants!</h6>
   <div>
     <% if @plants_placed_wrong.any? %>
 
@@ -87,7 +86,9 @@
             <p class="p-hint">Hint: Change to a room with <%= plant_division.plant.light_level %></p>
 
             <div class="d-flex justify-content-end">
-              <%= link_to "Change", edit_plant_division_path(plant_division.id), method: :post, class:"btn-tips" %>
+
+              <%= link_to "Change", edit_plant_division_path(plant_division.id), method: :post, class:"btn-tips", style: "text-decoration: none;" %>
+
             </div>
 
           </div>

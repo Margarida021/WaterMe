@@ -20,7 +20,10 @@
 
             <% else %>
               <% if current_user.divisions.empty? %>
-                <%= link_to new_division_path do %>
+
+                <%= link_to new_division_path, data: {
+                  controller: "select-plant", action: "click->select-plant#missing", select_plant_target: "createDivisionConfirmLink" } do %>
+
                   <i class="fa-solid fa-plus icon-link"></i>
                 <% end %>
               <% else %>

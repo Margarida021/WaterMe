@@ -93,16 +93,16 @@ class PlantsController < ApplicationController
 
       # This have first 1 for simplicity (Im creating a hash first because there could be a better way to do this without create plants at first)
 
-      search_results = JSON.parse(url_open)["data"].first(3)
+      search_results = JSON.parse(url_open)["data"]
 
       search_results.each do |result|
-        plant_name = result["common_name"].capitalize
-        plant_scientific_name = result["scientific_name"][0]
-        plant_photo = photo_null?(result["default_image"])
-        # plant_watering_freq = result["watering"]
-        # plant_light_level = result["sunlight"][0]
-        plant_perenual_id = result["id"]
-        plant_objects << { name: plant_name, scientific_name: plant_scientific_name, photo_url: plant_photo, perenual_id: plant_perenual_id }
+        if result["id"] <= 3000
+          plant_name = result["common_name"].capitalize
+          plant_scientific_name = result["scientific_name"][0]
+          plant_photo = photo_null?(result["default_image"])
+          plant_perenual_id = result["id"]
+          plant_objects << { name: plant_name, scientific_name: plant_scientific_name, photo_url: plant_photo, perenual_id: plant_perenual_id }
+        end
       end
     end
 
