@@ -3,6 +3,7 @@ class DivisionsController < ApplicationController
 
   def index
     @divisions = Division.all
+    # @divisions = current_user.divisions
   end
 
   def show
