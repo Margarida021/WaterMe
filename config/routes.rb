@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post "plant_rec", to: "plants#api"
 
 
-  resources :plant_divisions, only: [:show, :destroy, :edit]
+  resources :plant_divisions, only: [:show, :destroy, :edit, :update]
 
   resources :waterings, only: [:create]
 end

@@ -38,19 +38,18 @@ class PlantDivisionsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def show
   end
 
-
   def edit
   end
 
   def update
+
     @plant_division.update(plant_division_params)
-    redirect_to plant_divisions_path
+    redirect_to division_path(@plant_division.division)
   end
 
   def destroy
