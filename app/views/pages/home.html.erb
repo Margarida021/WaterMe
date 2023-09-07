@@ -17,7 +17,7 @@
 <%# Needing Water Notification %>
 <div class="notifications top-notification">
   <% if PlantDivision.not_watered(current_user).any? %>
-  <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
+    <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
   <div>
     <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
     <% PlantDivision.not_watered(current_user).each do |plant_division| %>
@@ -33,6 +33,7 @@
         <% end %>
       </div>
     <% end %>
+  </div>
   <% else %>
     <h5>Good job, all your plants are watered!</h5>
   <% end %>
