@@ -24,7 +24,6 @@ class DivisionsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
