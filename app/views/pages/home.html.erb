@@ -14,41 +14,43 @@
     </div>
   <% end %>
 
-  <div class="d-flex justify-content-evenly mb-5 mt-5">
-    <%= link_to new_division_path, class:"removelink" do %>
+  <div class="notifications top-notification">
+      <% if PlantDivision.not_watered(current_user).any? %>
+        <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
+      <div>
+        <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
+        <% PlantDivision.not_watered(current_user).each do |plant_division| %>
+          <div class="plants-notifications">
+            <%= image_tag (plant_division.plant.photo_url) %>
+            <div class="flex-grow-1">
+              <h6><%= plant_division.plant.name %></h6>
+              <p><i><%= plant_division.division.name %></i></p>
+            </div>
+            <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
+              <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
+              <p>Water</p>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <h5>Good job, all your plants are watered!</h5>
+      <% end %>
+    </div>
+  </div>
+
+<div class="d-flex justify-content-evenly mb-5 mt-5">
+  <%= link_to new_division_path, class:"removelink" do %>
     <div class="btn-home p-3"><h1>ADD</h1> <h2>NEW DIVISION</h2><%= image_tag("house.svg", class: "img-btn-h")%></div>
   <% end %>
   <%= link_to plants_path, class:"removelink" do %>
-    <div class="btn-home p-3">
-      <h1>ADD</h1>
-  
-      <h2>NEW PLANT</h2>
- <%= image_tag("Vector.svg", class: "img-btn")%></div>
+  <div class="btn-home p-3">
+    <h1>ADD</h1>
+    <h2>NEW PLANT</h2>
+    <%= image_tag("Vector.svg", class: "img-btn")%></div>
   <% end %>
 </div>
-<div class="notifications">
-    <h2>Water Me! <i class="fa-regular fa-face-frown fa-sm"></i></h2>
-  <div>
-    <% if PlantDivision.not_watered(current_user).any? %>
-      <p class="p-title">It's <%= Date.today.strftime('%A') %>, these plants need love:</p>
-      <% PlantDivision.not_watered(current_user).each do |plant_division| %>
-        <div class="plants-notifications">
-          <%= image_tag (plant_division.plant.photo_url) %>
-          <div class="flex-grow-1">
-            <h6><%= plant_division.plant.name %></h6>
-            <p><i><%= plant_division.division.name %></i></p>
-          </div>
-          <%= button_to waterings_path(plant_division_id: plant_division.id), method: :post, class:"btn-waterings" do %>
-            <i class="fa-solid fa-droplet fa-2xl" style="color: #A7D1C8;"></i>
-            <p>Water</p>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <h5>Good job, all your plants are watered!</h5>
-    <% end %>
-  </div>
-</div>
+
+<% if PlantDivision.watered(current_user).any? %>
 <div class="notifications">
   <h2 class="h2-notifications">We are all watered! <i class="fa-regular fa-face-laugh-beam fa-sm"></i></h2>
   <% PlantDivision.watered(current_user).each do |plant_division| %>
@@ -60,4 +62,6 @@
       </div>
     </div>
   <% end %>
+  </div>
 </div>
+<% end %>
