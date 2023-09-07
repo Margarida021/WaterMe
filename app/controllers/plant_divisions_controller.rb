@@ -1,5 +1,4 @@
 class PlantDivisionsController < ApplicationController
-
   before_action :set_plant_division, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -8,7 +7,7 @@ class PlantDivisionsController < ApplicationController
     else
       @division = Division.find(params[:division_id])
     end
-    @plant_division = PlantDivision.new
+      @plant_division = PlantDivision.new
   end
 
   def create
