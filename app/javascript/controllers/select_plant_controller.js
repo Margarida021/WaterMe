@@ -35,6 +35,16 @@ export default class extends Controller {
     };
   }
 
+  missing () {
+    Swal.fire({
+      icon: 'warning',
+      title: 'No Divisions',
+      text: `Want to create a division?`,
+      confirmButtonColor: '#81A682',
+      confirmButtonText: 'Yes'
+    });
+  }
+
   disconnect() {
     if (Controller.currentActiveCard === this) {
       Controller.currentActiveCard = null;
