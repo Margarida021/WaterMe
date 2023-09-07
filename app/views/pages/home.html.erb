@@ -43,20 +43,22 @@
 <div class="notifications">
 
   <h2>Tips for your plants :)</h2>
-  <p>The plant</p>
+  <p>These plants are not well placed... Move them so you can have beautiful plants!</p>
 
   <div>
     <% if @plants_placed_wrong.any? %>
       <div class="plants-notifications">
-        <% @plants_placed_wrong.each do |plant_division| %>
-          <%= image_tag (plant_division.plant.photo_url) %>
-          <div>
-            <p><%= plant_division.plant.name %></p>
-            <p><%= plant_division.division.name %></p>
-            <p>This plant is not well placed... Consider to move it to a Division with <%= plant_division.plant.light_level %></p>
-            <%= button_to "Change Division", waterings_path(plant_division_id: plant_division.id), method: :post %>
-          </div>
-        <% end %>
+        <div class="d-flex flex-column">
+          <% @plants_placed_wrong.each do |plant_division| %>
+            <%= image_tag (plant_division.plant.photo_url) %>
+            <div>
+              <p><%= plant_division.plant.name %></p>
+              <p><%= plant_division.division.name %></p>
+              <p><strong>Change to a room with <%= plant_division.plant.light_level %></strong></p>
+              <%= button_to "Change Division", waterings_path(plant_division_id: plant_division.id), method: :post %>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% else %>
         <h5>Good job, all your plants are well placed :D</h5>
