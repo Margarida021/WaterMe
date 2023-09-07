@@ -1,0 +1,25 @@
+
+<%= image_tag("leaves.svg", class:"image-leaves") %>
+<div class="new-plant-division">
+
+  <%= link_to image_tag("icons/arrow-circle-left.svg"), plants_path %>
+
+  <div class="new-plant-division-top-details">
+    <h2>Select one of yours divisions</h2>
+    <p class="p-subtitle">Add the plant to one of yours divisions</p>
+  </div>
+ <%#  fechou %>
+
+  <%= simple_form_for [@plant, @plant_division] do |f| %>
+  <%= f.association :division, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item mb-3 lc',
+            input_html: {class: 'category-selector borda + label' },
+            collection: Division.all%>
+
+  <div class="d-flex justify-content-center mb-5">
+    <%= f.button :submit , class: "btn btn-create-plant-division"%>
+  </div>
+  <%end%>
+    </div>
