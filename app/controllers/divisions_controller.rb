@@ -2,8 +2,7 @@ class DivisionsController < ApplicationController
   before_action :set_division, only: [:show, :edit, :update, :destroy]
 
   def index
-    @divisions = Division.all
-    # @divisions = current_user.divisions
+    @divisions = current_user.divisions
   end
 
   def show
