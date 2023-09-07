@@ -245,3 +245,18 @@
 form.delete-alertbox{
   height: 30px!important;
  }
+
+ .btn-tips {
+  padding: 5px 20px 5px 20px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  margin: 15px 0 0 0;
+  border-radius: 8px;
+  color: $lighter-green;
+  background-color: $medium-light-green;
+  p {
+    margin: 5px 0 0 0;
+    font-size: 15px;
+  }
+ }
