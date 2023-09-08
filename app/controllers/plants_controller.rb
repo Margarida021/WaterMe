@@ -96,7 +96,7 @@ class PlantsController < ApplicationController
       search_results = JSON.parse(url_open)["data"]
 
       search_results.each do |result|
-        unless result["id"] >= 3000 || result["default_image"].nil?
+        if result["id"] <= 3000 && result["default_image"]
           plant_name = result["common_name"].capitalize
           plant_scientific_name = result["scientific_name"][0]
           plant_photo = photo_null?(result["default_image"])
@@ -155,7 +155,7 @@ class PlantsController < ApplicationController
     if plant_photo.nil?
       photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
     else
-      photo = plant_photo
+      photo = plant_photo["original_url"]
     end
 
     photo
