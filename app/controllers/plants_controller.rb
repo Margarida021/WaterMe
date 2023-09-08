@@ -155,7 +155,7 @@ class PlantsController < ApplicationController
     if plant_photo.nil?
       photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
     else
-      photo = plant_photo["original_url"]
+      photo = plant_photo
     end
 
     photo
