@@ -59,9 +59,10 @@
 
   .plant-name {
     margin: 0;
-    color: $darker-green;
+    color: #174A41;
     text-decoration: none;
     font-weight: 700;
+    text-align: left;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -77,4 +78,3 @@
   align-items: flex-start;
   padding-left: 20px;
 }
-
