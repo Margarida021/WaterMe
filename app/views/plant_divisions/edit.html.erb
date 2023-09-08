@@ -16,7 +16,7 @@
             collection_wrapper_class: 'category-wrapper',
             item_wrapper_class: 'category-item mb-3 lc',
             input_html: {class: 'category-selector borda + label' },
-            collection: Division.all%>
+            collection: current_user.divisions%>
 
   <div class="d-flex justify-content-center mb-5">
     <%= f.button :submit , class: "btn btn-create-plant-division"%>
