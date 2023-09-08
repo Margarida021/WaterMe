@@ -96,7 +96,7 @@ class PlantsController < ApplicationController
       search_results = JSON.parse(url_open)["data"]
 
       search_results.each do |result|
-        if result["id"] <= 3000 || result["default_image"]["original_url"].nil?
+        if result["id"] <= 3000 || result["default_image"].nil?
           plant_name = result["common_name"].capitalize
           plant_scientific_name = result["scientific_name"][0]
           plant_photo = photo_null?(result["default_image"])
