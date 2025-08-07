@@ -80,49 +80,118 @@ flower_ids = [855, 728, 2193, 1908, 677, 2533, 2773, 2774, 334, 24, 355, 540, 65
 
 puts "Populating db with flowers and careguides"
 
+# flower_ids.each do |id|
+#   url_detail_plant = "https://perenual.com/api/species/details/#{id}?key=sk-9mrl64ef1ec5831212029"
+
+#   url_detail_plant_open = URI.open(url_detail_plant).read
+
+#   plant_data = JSON.parse(url_detail_plant_open)
+
+#   plant_photo = photo_null?(plant_data["default_image"])
+
+#   plant_light = check_sunlight(plant_data["sunlight"][0].capitalize)
+
+#   new_plant = Plant.new(
+#     name: plant_data["common_name"].capitalize,
+#     scientific_name: plant_data["scientific_name"][0].capitalize,
+#     description: plant_data["description"],
+#     photo_url: plant_photo,
+#     water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
+#     light_level: plant_light,
+#     perenual_id: plant_data["id"]
+#   )
+
+#   new_plant.save
+#   puts "#{new_plant.name} created"
+
+#   # Create care guide and look for it
+
+#   url_care_guide_plant = plant_data["care-guides"]
+
+#   url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+
+#   plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
+
+#   care_guide = CareGuide.new(
+#     watering: plant_care_guide[0]["description"],
+#     sunlight: plant_care_guide[1]["description"],
+#     pruning: plant_care_guide[2]["description"]
+#   )
+
+#   care_guide.plant = new_plant
+
+#   care_guide.save
+#   puts "#{new_plant.name} careguide created"
+# end
+
 flower_ids.each do |id|
   url_detail_plant = "https://perenual.com/api/species/details/#{id}?key=#{ENV["PERENUAL_API"]}"
 
-  url_detail_plant_open = URI.open(url_detail_plant).read
+  begin
+    url_detail_plant_open = URI.open(url_detail_plant).read
+    plant_data = JSON.parse(url_detail_plant_open)
+  rescue OpenURI::HTTPError => e
+    puts "Erro ao buscar planta com ID #{id}: #{e.message}"
+    next
+  end
 
-  plant_data = JSON.parse(url_detail_plant_open)
-
+  # Valor default para imagem
   plant_photo = photo_null?(plant_data["default_image"])
 
-  plant_light = check_sunlight(plant_data["sunlight"][0].capitalize)
+  # Valor default para luz (ou você pode definir como nil ou algum padrão)
+  plant_light = if plant_data["sunlight"].is_a?(Array) && plant_data["sunlight"][0]
+    check_sunlight(plant_data["sunlight"][0].capitalize)
+  else
+    "Medium" # ou outro valor válido para seu modelo
+  end
+
+  # Valor default para frequência de rega
+  watering_frequency = WaterFrequency.find_by(frequency: plant_data["watering"]) || WaterFrequency.first
+
+  # Valor default para descrição
+  description = plant_data["description"].present? ? plant_data["description"] : "No description provided."
 
   new_plant = Plant.new(
-    name: plant_data["common_name"].capitalize,
-    scientific_name: plant_data["scientific_name"][0].capitalize,
-    description: plant_data["description"],
+    name: plant_data["common_name"]&.capitalize || "Unknown",
+    scientific_name: plant_data["scientific_name"]&.first&.capitalize || "Unknown",
+    description: description,
     photo_url: plant_photo,
-    water_frequency: WaterFrequency.find_by(frequency: plant_data["watering"]),
+    water_frequency: watering_frequency,
     light_level: plant_light,
     perenual_id: plant_data["id"]
   )
 
-  new_plant.save
-  puts "#{new_plant.name} created"
+  if new_plant.save
+    puts "#{new_plant.name} created"
+  else
+    puts "Failed to create plant #{plant_data["common_name"] || 'Unknown'}"
+    puts "Errors: #{new_plant.errors.full_messages.join(', ')}"
+    next
+  end
 
-  # Create care guide and look for it
+  # CareGuide
+  begin
+    url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
+    plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
 
-  url_care_guide_plant = plant_data["care-guides"]
+    care_guide = CareGuide.new(
+      watering: plant_care_guide[0]["description"],
+      sunlight: plant_care_guide[1]["description"],
+      pruning: plant_care_guide[2]["description"],
+      plant: new_plant
+    )
 
-  url_care_guide_plant_open = URI.open(plant_data["care-guides"]).read
-
-  plant_care_guide = JSON.parse(url_care_guide_plant_open)["data"][0]["section"]
-
-  care_guide = CareGuide.new(
-    watering: plant_care_guide[0]["description"],
-    sunlight: plant_care_guide[1]["description"],
-    pruning: plant_care_guide[2]["description"]
-  )
-
-  care_guide.plant = new_plant
-
-  care_guide.save
-  puts "#{new_plant.name} careguide created"
+    if care_guide.save
+      puts "#{new_plant.name} careguide created"
+    else
+      puts "Failed to create careguide for #{new_plant.name}"
+      puts "Errors: #{care_guide.errors.full_messages.join(', ')}"
+    end
+  rescue => e
+    puts "Erro ao criar careguide para #{new_plant.name}: #{e.message}"
+  end
 end
+
 
 puts "plants & careguides created"
 
